@@ -1,0 +1,44 @@
+{
+    "Engracado": [
+        {
+            "pergunta": "Como posso ingressar na UFCA?",
+            "resposta": "Simples, mas exige esforço: faça o ENEM e dê o seu melhor na nota para entrar pelo SISU. Se não der na primeira, ainda tem transferências, mudanças de curso e editais extras. Pense na UFCA como uma grande porta giratória: se uma vez não entrou, tenta de novo, mas não esqueça de estudar — a sorte não ajuda sem conhecimento"
+        },
+        {
+            "pergunta": "Como acessar o SIGAA?",
+            "resposta": "Basta acessar 'sig.ufca.edu.br' e colocar seu login e senha. Mas cuidado: o SIGAA pode ser temperamental às vezes, travando ou carregando devagar. Respire fundo, abra o café e siga com calma, porque paciência é quase um curso extra na UFCA"
+        },
+        {
+            "pergunta": "Quais cidades possuem campi da UFCA?",
+            "resposta": "A UFCA é tipo uma franquia da educação pelo Cariri: Juazeiro do Norte, Barbalha, Crato, Brejo Santo e Icó. Cada campus tem seus cursos e sua estrutura, mas infelizmente ainda não entregam aulas na sua casa — ainda"
+        }
+    ],
+    "Formal": [
+        {
+            "pergunta": "Como posso ingressar na UFCA?",
+            "resposta": "A principal forma de ingresso na UFCA é por meio do SISU, utilizando a nota obtida no ENEM. Além disso, a universidade disponibiliza editais para Transferência Voluntária, Mudança de Curso e Admissão de Graduados. É importante acompanhar os prazos de inscrição e os documentos necessários no site oficial da UFCA, garantindo que todos os requisitos sejam atendidos para a matrícula."
+        },
+        {
+            "pergunta": "Como acessar o SIGAA?",
+            "resposta": "O SIGAA (Sistema de Gestão Acadêmica da UFCA) pode ser acessado pelo endereço sig.ufca.edu.br. Para entrar, utilize o login e a senha cadastrados. O sistema permite realizar matrícula, consultar histórico acadêmico, acompanhar notas, acessar horários de aulas e informações sobre disciplinas. Recomenda-se manter seus dados atualizados para evitar problemas administrativos."
+        },
+        {
+            "pergunta": "Quais cidades possuem campi da UFCA?",
+            "resposta": "A Universidade Federal do Cariri possui campi localizados em cinco municípios: Juazeiro do Norte, Barbalha, Crato, Brejo Santo e Icó. Cada campus oferece cursos específicos e infraestrutura diferenciada, incluindo laboratórios, bibliotecas e serviços de apoio estudantil, garantindo acesso de qualidade à educação superior na região do Cariri."
+        }
+    ],
+    "Rude": [
+        {
+            "pergunta": "Como posso ingressar na UFCA?",
+            "resposta": "Estudando, óbvio. Faz o ENEM, coloca sua nota no SISU e cruza os dedos. Depois que passar ainda ou se ficar na lista de espera, tem que ter cuidado com a documentação e datas importantes, olhe sempre o site da faculdade ou o instagram! Se passar e perder algum envio de documentação, JÁ ERA! ITS OVER! Tenta de novo no próximo ano."
+        },
+        {
+            "pergunta": "Como acessar o SIGAA?",
+            "resposta": "Vai em sig.ufca.edu.br, digita login e senha. Se esquecer ou errar, azar o seu: corre atrás da coordenação, porque ninguém vai entregar sua matrícula na mão."
+        },
+        {
+            "pergunta": "Quais cidades possuem campi da UFCA?",
+            "resposta": "Juazeiro do Norte, Barbalha, Crato, Brejo Santo e Icó. Não é Hogwarts pra ter castelo em cada esquina, mas já dá pra estudar bem e aproveitar os recursos que a universidade oferece."
+        }
+    ]
+}
