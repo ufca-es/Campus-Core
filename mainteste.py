@@ -1,53 +1,74 @@
+import json
+# Importa o módulo 'random' para permitir o sorteio de respostas.
+import random
+
+def extrair_perguntas_unicas(dados_chatbot):
+    perguntas_set = set()
+    for persona in dados_chatbot.values():
+        for item in persona:
+            perguntas_set.add(item['pergunta'])
+    return list(perguntas_set)
 
 def escolha_persona():
     while True:
-        print("Digite:\n1. Engraçado\n2. Formal\n3. Rude\n")
-        persona = int(input("Sua Escolha: "))
-        match persona:
-            case 1:
-                print("Personalidade: Engraçada Escolhida.")
+        try:
+            print("\nCom qual personalidade devo responder?")
+            print("1. Engraçado\n2. Formal\n3. Rude")
+            
+            persona_num = int(input("Sua Escolha: "))
+            
+            if persona_num == 1:
                 return "Engracado"
-                
-            case 2:
-                print("Personalidade: Formal Escolhida")
+            elif persona_num == 2:
                 return "Formal"
-            case 3:
-                print("Personalidade: Rude Escolhida.")
+            elif persona_num == 3:
                 return "Rude"
-                
-            case _:
-                print("Escolha de personalidade inválida. Tente novamente:")
+            else:
+                print("Escolha de personalidade inválida. Tente novamente.")
+        except ValueError:
+            print("Entrada inválida. Por favor, digite um número.")
 
-def escolha_pergunta(persona_escolhida):
-    while True:
-        print("\nPerguntas Principais. (Digite o número da pergunta para escolher): ")
-        for i, item in enumerate(dados[persona_escolhida], start=1):
-            print(f"{i}. {item['pergunta']}") 
-        print("0. Sair")
-        print("9. Trocar personalidade")  
+def encontrar_resposta(pergunta_escolhida, persona_escolhida, dados_chatbot):
+    for item in dados_chatbot[persona_escolhida]:
+        if item['pergunta'] == pergunta_escolhida:
+            # Sorteia e retorna um item aleatório da lista de respostas.
+            return random.choice(item['resposta'])
+    return "Resposta não encontrada."
 
-        escolha = int(input("Sua escolha: "))
+# --- Início do programa ---
 
-        if 1 <= escolha <= len(dados[persona_escolhida]):
-            resposta = dados[persona_escolhida][escolha - 1]["resposta"]
-            print(f"Resposta: {resposta}")
+print("Bem-Vindo ao chat Bot da UFCA\n")
 
-        elif escolha == 0:
-            print("Saindo...")
-            break
-
-        elif escolha == 9:  
-            print("\nMudando de personalidade...")
-            persona_escolhida = escolha_persona()  
-
-        else:
-            print("Opção inválida.")
-
-        
-import json
-print("Bem-Vindo ao chat Bot da UFCA\nSelecione uma das personalidades para começar.\n")
+# Carrega os dados do seu novo arquivo JSON.
 with open('json_chatbot.json', 'r', encoding='utf-8') as arq:
     dados = json.load(arq)
 
-escolha_persona_inicial = escolha_persona()
-escolha_pergunta(escolha_persona_inicial)
+# Gera a lista de todas as perguntas disponíveis, incluindo as novas.
+perguntas_disponiveis = extrair_perguntas_unicas(dados)
+
+# Loop principal da conversa.
+while True:
+    print("\nPerguntas Principais. (Digite o número da pergunta para escolher):")
+    for i, pergunta in enumerate(perguntas_disponiveis, start=1):
+        print(f"{i}. {pergunta}") 
+    print("0. Sair")
+
+    try:
+        escolha_num = int(input("\nSua escolha: "))
+
+        if 1 <= escolha_num <= len(perguntas_disponiveis):
+            pergunta_selecionada = perguntas_disponiveis[escolha_num - 1]
+            
+            persona_selecionada = escolha_persona()
+            
+            # A função agora retorna uma resposta sorteada.
+            resposta = encontrar_resposta(pergunta_selecionada, persona_selecionada, dados)
+            print(f"\n>> Resposta ({persona_selecionada}): {resposta}")
+
+        elif escolha_num == 0:
+            print("\nSaindo...")
+            break
+        else:
+            print("\nOpção inválida. Tente novamente.")
+    except ValueError:
+        print("\nEntrada inválida. Por favor, digite um número.")
