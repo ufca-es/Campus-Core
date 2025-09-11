@@ -9,7 +9,7 @@ with open('json_chatbot.json', 'r', encoding='utf-8') as arq:
 # Arquivo para novas duvidas
 arquivo_novas_duvidas = 'novas_duvidas.json'
 
-#Se já existir um arquivo, ele faz o load do existente para não perder nenhuma dúvida anterior
+#Se já existir um arquivo, ele faz o load do existente para não perder nenhuma dúvida anterior.
 if os.path.exists(arquivo_novas_duvidas):
     with open(arquivo_novas_duvidas, 'r', encoding= 'utf-8') as arq:
         novas_duvidas = json.load(arq)
@@ -20,7 +20,7 @@ else:
 
 arquivo_historico = 'historico_chat.txt'
 
-#Keywords para encontrar personalidades
+#Keywords para personalidades
 keywords_personalidade = {
     "Engracado":["engracado", "divertido", "brincalhão", "engracada"],
     "Formal": ["formal", "sério", "profissional"],
@@ -34,7 +34,6 @@ def salvar_historico(pergunta,resposta):
         arq.write(f"Chatbot: {resposta}\n")
         arq.write("="*20 + '\n')
 
-
 def detectar_personalidade(entrada, personalidade_atual="Formal"):
     entrada_lower = entrada.lower()
     for persona, keywords in keywords_personalidade.items():
@@ -44,8 +43,18 @@ def detectar_personalidade(entrada, personalidade_atual="Formal"):
                 return persona,entrada
     return personalidade_atual, entrada
 
+#Ler as 5 últimas interações
 
-# encontrar as respostas.
+def ler_ultimas_interacoes():
+    if not os.path.exists(arquivo_historico):
+        return []
+    with open(arquivo_historico, 'r', encoding='utf-8') as arq:
+        linhas = arq.readlines()
+    # cada resposta guardada, são usadas 3 linhas no .txt
+    interacoes = [linhas[i:i+3] for i in range(0, len(linhas), 3)]
+    return interacoes[-5:] 
+
+# encontrar respostas.
 def encontrar_respostas(duvida,personalidade):
     respostas_possiveis = []
     duvida_lower = duvida.lower()
@@ -73,6 +82,15 @@ def codigo_principal():
     personalidade_atual = "Formal"
     print("Bem-vindo ao ChatBot UFCA! Você pode digitar qualquer pergunta.\n")
     print("Para mudar a personalidade, use palavras como: engraçado, formal, rude.\nDigite sair para encerrar o programa")
+
+    ultimas_interacoes = ler_ultimas_interacoes()
+    
+    if ultimas_interacoes:
+        print("Últimas interações.", "=" * 20)
+        for interacao in ultimas_interacoes:
+            for linha in interacao:
+                print(linha,end="")
+        print("="*20+"\n")
 
     while True:
         duvida = input("Digite sua dúvida: ")
