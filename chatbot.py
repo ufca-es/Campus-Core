@@ -2,8 +2,19 @@ import random
 
 import json
 
+import os
 with open('json_chatbot.json', 'r', encoding='utf-8') as arq:
     dados = json.load(arq)
+
+# Arquivo para novas duvidas
+arquivo_novas_duvidas = 'novas_duvidas.json'
+
+#Se já existir um arquivo, ele faz o load do existente para não perder nenhuma dúvida anterior
+if os.path.exists(arquivo_novas_duvidas):
+    with open(arquivo_novas_duvidas, 'r', encoding= 'utf-8') as arq:
+        novas_duvidas = json.load(arq)
+else:
+    novas_duvidas = []
 
 
 #Keywords para personalidades
@@ -25,7 +36,6 @@ def detectar_personalidade(entrada, personalidade_atual="Formal"):
                 return persona,entrada
     return personalidade_atual, entrada
 
-#Escolher personalidade
 
 # encontrar respostas.
 def encontrar_respostas(duvida,personalidade):
@@ -41,7 +51,11 @@ def encontrar_respostas(duvida,personalidade):
     if respostas_possiveis:
         return random.choice(respostas_possiveis)
     else:
-        return "Desculpa, ainda não sei responder a essa dúvida, ou não consegui compreendela"
+        if duvida not in novas_duvidas and duvida != "":
+            novas_duvidas.append(duvida)
+            with open(arquivo_novas_duvidas, 'w', encoding='utf-8') as arq:
+                json.dump(novas_duvidas,arq,ensure_ascii=False,indent=4)
+        return "Desculpa, ainda não sei responder a essa dúvida, mas guardei para analisar depois"
 
 
 
