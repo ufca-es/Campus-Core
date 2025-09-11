@@ -4,7 +4,7 @@
       "pergunta": "Como posso ingressar na UFCA?",
       "resposta": [
         "Quer entrar na UFCA? Faz o ENEM e torce para o SISU ser bonzinho com você.",
-        "Para se dar bem na UFCA, manda bem no ENEM e reza pro SISU não te barrar.",
+        "Para se dar bem na UFCA, manda bem no ENEM e reza pro SISU não te barrar. Lembra de sempre dar uma olhada na documentação da ufca para não dar b.o",
         "O segredo é simples: ENEM decente e SISU cooperativo — ou café forte e paciência."
       ],
       "keywords": ["ingressar", "entrar", "sisu", "enem", "ingresso"]
@@ -26,6 +26,33 @@
         "Quer estudar na UFCA? Vai ter que escolher entre Juazeiro do Norte, Barbalha, Crato, Brejo Santo e Icó."
       ],
       "keywords": ["campi", "cidade", "local", "onde"]
+    },
+    {
+      "pergunta": "Como funciona o Restaurante Universitário (RU)?",
+      "resposta": [
+        "O RU é o paraíso dos universitários com fome! Você compra uns tíquetes baratinhos, encara a fila e sai com um banquete que salva o bolso.",
+        "Funciona assim: você paga quase nada, sobrevive a uma fila épica e ganha uma refeição digna. É a oitava maravilha do mundo acadêmico.",
+        "É simples: compra o ticket, pega sua bandeja e come. O RU é a prova de que nem tudo na vida universitária é sofrimento, às vezes tem almoço barato."
+      ],
+      "keywords": ["ru", "restaurante", "universitário", "bandejão", "almoço", "comida", "jantar"]
+    },
+    {
+      "pergunta": "Qual o sistema de notas da UFCA?",
+      "resposta": [
+        "O sistema de notas vai de 0 a 10. Pra passar, você precisa de um 7 na média e 75% de presença. Abaixo disso, meu amigo, é choro e prova final.",
+        "É a boa e velha escala de 0 a 10. A meta é mirar no 10, se contentar com o 7 para passar, e fugir do vermelho como o diabo foge da cruz. E não falte!",
+        "Funciona na base do 0 a 10. Tirou 7 de média? Parabéns, você sobreviveu! Tirou menos? Prepare-se para a recuperação ou para ver a mesma matéria de novo."
+      ],
+      "keywords": ["notas", "avaliação", "média", "aprovação", "reprovação", "frequência", "passar"]
+    },
+    {
+      "pergunta": "A UFCA oferece moradia estudantil?",
+      "resposta": [
+        "Moradia própria, tipo um dormitório, ainda é um sonho. O que existe é o auxílio-moradia, um dinheirinho que a PRAE libera pra ajudar a pagar o aluguel.",
+        "A UFCA não tem um hotel cinco estrelas para estudantes. Mas ela oferece o auxílio-moradia, que é uma ajuda de custo pra você não ter que morar na rua.",
+        "Prédio de moradia? Ainda não temos esse luxo. Mas a PRAE tem o auxílio-moradia, que ajuda a pagar seu cantinho. Melhor que dormir na biblioteca, né?"
+      ],
+      "keywords": ["moradia", "residência", "dormitório", "alojamento", "auxílio", "aluguel", "prae"]
     }
   ],
   "Formal": [
@@ -55,15 +82,42 @@
         "As cidades Juazeiro do Norte, Barbalha, Crato, Brejo Santo e Icó abrigam os campi da UFCA."
       ],
       "keywords": ["campi", "cidade", "local", "onde"]
+    },
+    {
+      "pergunta": "Como funciona o Restaurante Universitário (RU)?",
+      "resposta": [
+        "O Restaurante Universitário oferece refeições subsidiadas. O acesso se dá mediante a aquisição de tíquetes e apresentação de identificação válida.",
+        "Para utilizar o RU, os estudantes devem adquirir créditos nos postos de venda. As refeições são servidas em horários pré-estabelecidos.",
+        "O funcionamento do Restaurante Universitário é gerido pela PRAE e requer a compra antecipada de acesso para as refeições."
+      ],
+      "keywords": ["ru", "restaurante", "universitário", "bandejão", "almoço", "comida", "jantar"]
+    },
+    {
+      "pergunta": "Qual o sistema de notas da UFCA?",
+      "resposta": [
+        "O sistema de avaliação da UFCA utiliza uma escala de notas de 0 a 10. A aprovação requer média final igual ou superior a 7,0 e frequência mínima de 75%.",
+        "A avaliação de desempenho é expressa em notas de 0 a 10. Para ser aprovado, o discente deve obter nota mínima de 7,0 e cumprir com 75% da carga horária.",
+        "Conforme as normas, o rendimento é mensurado em escala de 0 a 10. A aprovação está condicionada à obtenção de média 7,0 e frequência de 75%."
+      ],
+      "keywords": ["notas", "avaliação", "média", "aprovação", "reprovação", "frequência", "passar"]
+    },
+    {
+      "pergunta": "A UFCA oferece moradia estudantil?",
+      "resposta": [
+        "A UFCA não possui uma estrutura de residência universitária. Contudo, oferece o programa de auxílio-moradia, um suporte financeiro gerenciado pela PRAE.",
+        "Atualmente, a universidade não dispõe de moradia própria. Como alternativa, a PRAE concede um auxílio-moradia para auxiliar nos custos de habitação.",
+        "Não há residência universitária nos campi. A política de assistência contempla, porém, um auxílio pecuniário de moradia para estudantes elegíveis."
+      ],
+      "keywords": ["moradia", "residência", "dormitório", "alojamento", "auxílio", "aluguel", "prae"]
     }
   ],
   "Rude": [
     {
       "pergunta": "Como posso ingressar na UFCA?",
       "resposta": [
-        "Quer entrar na UFCA? Estuda ou desiste — não tem milagre.",
-        "Se não estudar, esquece: ENEM e SISU são cruéis com preguiçosos.",
-        "Quer passar na UFCA? Mexa o traseiro, faz o ENEM e torce para o SISU não te dar um chega pra lá."
+        "Quer entrar na UFCA? Estuda ou desiste — não tem milagre. Pra você não chorar depois, eu recomendo olhar a documentação e as datas no site da ufca.",
+        "Se não estudar, esquece: ENEM e SISU são cruéis com preguiçosos. Cuidado pra não ficar afogado na preguiça e esquecer de olhar as datas e as documentações da ufca",
+        "Quer passar na UFCA? Mexa o traseiro, faz o ENEM e torce para o SISU não te dar um chega pra lá. "
       ],
       "keywords": ["ingressar", "entrar", "sisu", "enem"]
     },
@@ -72,7 +126,7 @@
       "resposta": [
         "Vai em sig.ufca.edu.br, coloca login e senha, e para de reclamar se travar.",
         "Quer usar o SIGAA? Abre o site e digita usuário e senha, sem chororô.",
-        "Para entrar no SIGAA, digita login e senha, e se perder tempo reclamando, azar o seu."
+        "Para entrar no SIGAA, digita login e senha, e se perder tempo reclamando, faz um melhor aí. INOVA!."
       ],
       "keywords": ["sigaa", "acessar", "login", "senha"]
     },
@@ -81,9 +135,36 @@
       "resposta": [
         "Juazeiro do Norte, Barbalha, Crato, Brejo Santo e Icó. Aprende e pronto.",
         "Se quer estudar na UFCA, vai ter que escolher entre Juazeiro do Norte, Barbalha, Crato, Brejo Santo e Icó.",
-        "Os campi da UFCA estão nessas cidades: Juazeiro do Norte, Barbalha, Crato, Brejo Santo e Icó. Ponto final."
+        "Os campi da UFCA estão nessas cidades: Juazeiro do Norte, Barbalha, Crato, Brejo Santo e Icó. Tá achando que é horgwarts pra ter em toda esquina, é ?."
       ],
       "keywords": ["campi", "cidade", "local", "onde"]
+    },
+    {
+      "pergunta": "Como funciona o Restaurante Universitário (RU)?",
+      "resposta": [
+        "Você paga, pega uma fila, come e vai embora. Não tem segredo, é um restaurante.",
+        "Compra o ticket, espera na fila como todo mundo e come o que tiver no dia. Simples assim.",
+        "Funciona como qualquer bandejão: paga pouco, come e desocupa o lugar. Se não gostou, faz o rango aí pra todo mundo, fresco.."
+      ],
+      "keywords": ["ru", "restaurante", "universitário", "bandejão", "almoço", "comida", "jantar"]
+    },
+    {
+      "pergunta": "Qual o sistema de notas da UFCA?",
+      "resposta": [
+        "De 0 a 10. Tira 7 pra cima e não falta muito, ou você roda. Não é física quântica.",
+        "Precisa de média 7 e 75% de presença pra passar. Se não consegue isso, repense sua vida.",
+        "É de 0 a 10. Média abaixo de 7 é reprovação. Faltou demais? its over bro"
+      ],
+      "keywords": ["notas", "avaliação", "média", "aprovação", "reprovação", "frequência", "passar"]
+    },
+    {
+      "pergunta": "A UFCA oferece moradia estudantil?",
+      "resposta": [
+        "Não, a UFCA não é um hotel. Existe o auxílio-moradia pra quem precisa. Procure a PRAE.",
+        "Não tem dormitório. Se precisa de ajuda pra pagar aluguel, veja se tem direito ao auxílio na PRAE.",
+        "A universidade não vai te dar uma casa. O que ela pode dar é o auxílio-moradia, e só se você provar que precisa."
+      ],
+      "keywords": ["moradia", "residência", "dormitório", "alojamento", "auxílio", "aluguel", "prae"]
     }
   ]
 }
