@@ -16,8 +16,11 @@ if os.path.exists(arquivo_novas_duvidas):
 else:
     novas_duvidas = []
 
+#Arquivo para histórico - task 12 (Tendo que ser feita primeira)
 
-#Keywords para personalidades
+arquivo_historico = 'historico_chat.txt'
+
+#Keywords para encontrar personalidades
 keywords_personalidade = {
     "Engracado":["engracado", "divertido", "brincalhão", "engracada"],
     "Formal": ["formal", "sério", "profissional"],
@@ -25,7 +28,12 @@ keywords_personalidade = {
 }
 
 
-#Nova Escolha de personalidade
+def salvar_historico(pergunta,resposta):
+    with open(arquivo_historico, 'a', encoding='utf-8') as arq:
+        arq.write(f"Usuário:  {pergunta}\n")
+        arq.write(f"Chatbot: {resposta}\n")
+        arq.write("="*20 + '\n')
+
 
 def detectar_personalidade(entrada, personalidade_atual="Formal"):
     entrada_lower = entrada.lower()
@@ -37,7 +45,7 @@ def detectar_personalidade(entrada, personalidade_atual="Formal"):
     return personalidade_atual, entrada
 
 
-# encontrar respostas.
+# encontrar as respostas.
 def encontrar_respostas(duvida,personalidade):
     respostas_possiveis = []
     duvida_lower = duvida.lower()
@@ -77,6 +85,9 @@ def codigo_principal():
         resposta = encontrar_respostas(duvida_limpa, personalidade_atual)
 
         print(f"({personalidade_atual}) Chatbot:", resposta)
+
+
+        salvar_historico(duvida,resposta)
 
 #Chamar função principal
 
