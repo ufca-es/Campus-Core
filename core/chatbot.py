@@ -2,6 +2,7 @@ import random
 from core.historico import Historico
 from core.aprendizado import Aprendizado
 from core.personalidade import Personalidade, detectar_personalidade
+from core.relatorio import gerar_relatorio_final
 from core.estatisticas import Estatisticas
 
 class ChatBot:
@@ -59,6 +60,7 @@ class ChatBot:
                     contador_acumulado=self.personalidade.contador
                 )
                 estatisticas.mostrar()
+                gerar_relatorio_final(estatisticas)
                 break
 
             nova_personalidade, pergunta_limpa = detectar_personalidade(duvida, self.personalidade.atual)
