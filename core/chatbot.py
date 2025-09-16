@@ -1,3 +1,5 @@
+# chatbot.py
+
 import random
 from core.historico import Historico
 from core.aprendizado import Aprendizado
@@ -38,7 +40,6 @@ class ChatBot:
                 self.perguntas_chaves_sessao.append(pergunta_chave)
             return random.choice(respostas_possiveis)
 
-        # Aprendizado se não souber
         print("Não sei responder a essa dúvida. Poderia me dizer uma possível resposta?")
         sugestao = input("Diga sua sugestão: ")
         self.aprendizado.salvar_novo_conhecimento(pergunta, sugestao)
@@ -54,13 +55,22 @@ class ChatBot:
             duvida = input("Digite sua dúvida: ")
             if duvida.lower() == "sair":
                 print("Chatbot: Até logo")
+
+                # MODIFICADO: Passa a base_conhecimento para a classe Estatisticas
                 estatisticas = Estatisticas(
                     perguntas_chaves_sessao=self.perguntas_chaves_sessao,
                     contador_sessao=self.personalidade.contador_sessao,
-                    contador_acumulado=self.personalidade.contador
+                    contador_acumulado=self.personalidade.contador,
+                    base_conhecimento=self.base_conhecimento, # NOVO
+                    historico_path=self.historico.arquivo     # NOVO
                 )
-                estatisticas.mostrar()
-                gerar_relatorio_final(estatisticas)
+                
+                # NOVO: Chama o método para mostrar as sugestões antes das estatísticas
+                estatisticas.sugerir_perguntas_frequentes()
+
+                # A exibição das estatísticas da sessão e o relatório final continuam como antes
+                estatisticas.mostrar() # Mostra estatísticas da sessão [cite: 55]
+                gerar_relatorio_final(estatisticas) # Gera o relatório [cite: 27]
                 break
 
             nova_personalidade, pergunta_limpa = detectar_personalidade(duvida, self.personalidade.atual)
