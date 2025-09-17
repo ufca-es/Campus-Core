@@ -2,9 +2,9 @@ import json
 import os
 
 keywords_personalidade = {
-    "Engracado": ["engracado", "divertido", "brincalhão", "engracada", "engraçada", "engraçado"],
-    "Formal": ["formal", "sério", "profissional"],
-    "Rude": ["rude", "grosso", "sarcástico"]
+    "Engracado": ["engracado", "divertido", "brincalhão", "engracada", "engraçada", "engraçado","brincalhao"],
+    "Formal": ["formalidade","formal", "sério", "profissional"],
+    "Rude": ["rude", "grosso", "sarcástico","sarcastico"]
 }
 
 class Personalidade:

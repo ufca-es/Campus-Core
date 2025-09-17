@@ -56,27 +56,53 @@ class ChatBot:
             if duvida.lower() == "sair":
                 print("Chatbot: Até logo")
 
-                # MODIFICADO: Passa a base_conhecimento para a classe Estatisticas
+                #Passa a base_conhecimento para a classe Estatisticas
                 estatisticas = Estatisticas(
                     perguntas_chaves_sessao=self.perguntas_chaves_sessao,
                     contador_sessao=self.personalidade.contador_sessao,
                     contador_acumulado=self.personalidade.contador,
-                    base_conhecimento=self.base_conhecimento, # NOVO
-                    historico_path=self.historico.arquivo     # NOVO
+                    base_conhecimento=self.base_conhecimento,
+                    historico_path=self.historico.arquivo  
                 )
                 
-                # NOVO: Chama o método para mostrar as sugestões antes das estatísticas
+                # Chama o método para mostrar as sugestões antes das estatísticas
                 estatisticas.sugerir_perguntas_frequentes()
 
                 # A exibição das estatísticas da sessão e o relatório final continuam como antes
-                estatisticas.mostrar() # Mostra estatísticas da sessão [cite: 55]
-                gerar_relatorio_final(estatisticas) # Gera o relatório [cite: 27]
+                estatisticas.mostrar() # Mostra estatísticas da sessão
+                gerar_relatorio_final(estatisticas) # Gera o relatório
                 break
-
+            
             nova_personalidade, pergunta_limpa = detectar_personalidade(duvida, self.personalidade.atual)
-            self.personalidade.alterar(nova_personalidade)
+            personalidade_mudou = nova_personalidade != self.personalidade.atual
 
+            # --- Lógica de Personalidade e Feedback ---
+            # Caixa Externa: Verificamos se a personalidade mudou PRIMEIRO.
+            if personalidade_mudou:
+                self.personalidade.alterar(nova_personalidade)
+                self.personalidade.salvar_contador()
+                
+                # Caixa Interna: AGORA decidimos o feedback, pois SABEMOS que a personalidade mudou.
+                # CASO 1: Mudou E HÁ uma pergunta junto.
+                if pergunta_limpa.strip():
+                    print(f"Chatbot: Personalidade alterada para {self.personalidade.atual}.")
+                    # Corrigido: com 2 argumentos
+                    self.historico.salvar(f"({duvida} -> Mudou para {self.personalidade.atual})", "(Ação de sistema)")
+                
+                # CASO 2: Mudou e era SÓ um comando.
+                else:
+                    print(f"({self.personalidade.atual}) Chatbot: Personalidade alterada. Como posso ajudar?")
+                    self.historico.salvar(duvida, "(Comando para alterar personalidade)")
+                    continue
+
+            # Se a pergunta está vazia e a personalidade NÃO mudou (comando repetido),
+            # simplesmente pulamos para a próxima.
+            if not pergunta_limpa.strip():
+                continue
+
+            # --- Lógica para Responder Perguntas ---
+            # Se chegamos aqui, é porque há uma pergunta real para ser respondida.
             resposta = self.encontrar_resposta(pergunta_limpa)
-            print(f"({self.personalidade.atual}) Chatbot:", resposta)
+            print(f"({self.personalidade.atual}) Chatbot: {resposta}")
             self.historico.salvar(duvida, resposta)
-            self.personalidade.salvar_contador()
+
