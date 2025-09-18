@@ -1,0 +1,20 @@
+==================================================
+ RELATÓRIO DE SESSÃO DO CHATBOT UFCA
+ Gerado em: 18/09/2025 14:22:08
+==================================================
+
+Total de interações na sessão: 5
+Pergunta mais feita: 'Quais cidades possuem campi da UFCA?' (3 vezes)
+
+Uso das personalidades nesta sessão:
+- Formal: 5 vez(es)
+- Engracado: 0 vez(es)
+- Rude: 0 vez(es)
+
+Uso acumulado (total) das personalidades:
+- Formal: 11 vez(es)
+- Engracado: 2 vez(es)
+- Rude: 3 vez(es)
+
+==================================================
+FIM DO RELATÓRIO

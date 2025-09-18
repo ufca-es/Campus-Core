@@ -13,3 +13,60 @@ Chatbot: A Universidade Federal do Cariri possui campi localizados em cinco muni
 Usuário:  Onde posso tirar cópias ou imprimir trabalhos (xerox)?
 Chatbot: Fora da universidade. A UFCA ensina a pescar, não dá o peixe (nem a cópia) de graça.
 ==================================================
+Usuário:  Qual o sistema de notas da UFCA?
+Chatbot: É a boa e velha escala de 0 a 10. A meta é mirar no 10, se contentar com o 7 para passar, e fugir do vermelho como o diabo foge da cruz. E não falte!
+==================================================
+Usuário:  O que é a UFCA?
+Chatbot: É a instituição de ensino onde você supostamente estuda. Surpreso?
+==================================================
+Usuário:  O que é a UFCA?
+Chatbot: Trata-se de uma autarquia federal, vinculada ao Ministério da Educação, criada pela Lei nº 12.825, de 5 de junho de 2013.
+==================================================
+Usuário:  Onde fica o setor da PRAE?
+Chatbot: Para assuntos relacionados à assistência estudantil, dirija-se à PRAE, cujo setor de atendimento se encontra no prédio administrativo.
+==================================================
+Usuário:  O que é a UFCA?
+Chatbot: Trata-se de uma autarquia federal, vinculada ao Ministério da Educação, criada pela Lei nº 12.825, de 5 de junho de 2013.
+==================================================
+Usuário:  O que é a UFCA?
+Chatbot: É basicamente o lugar onde seus sonhos acadêmicos encontram os boletos do xerox e a ansiedade das provas. Bem-vindo!
+==================================================
+Usuário:  Quais cidades possuem campi da UFCA?
+Chatbot: A Universidade Federal do Cariri possui campi localizados em cinco municípios: Juazeiro do Norte, Barbalha, Crato, Brejo Santo e Icó.
+==================================================
+Usuário:  Quais cidades possuem campi da UFCA?
+Chatbot: Os campi da UFCA estão localizados nas cidades de Juazeiro do Norte, Barbalha, Crato, Brejo Santo e Icó.
+==================================================
+Usuário:  O que é a UFCA?
+Chatbot: A UFCA é uma universidade federal multicampi, com foco no ensino, pesquisa e extensão para o desenvolvimento social, cultural e econômico da região do Cariri.
+==================================================
+Usuário:  Como posso ingressar na UFCA?
+Chatbot: A principal forma de ingresso na UFCA é por meio do SISU, utilizando a nota obtida no ENEM.
+==================================================
+Usuário:  Quais cidades possuem campi da UFCA?
+Chatbot: A Universidade Federal do Cariri possui campi localizados em cinco municípios: Juazeiro do Norte, Barbalha, Crato, Brejo Santo e Icó.
+==================================================
+Usuário:  Quais cidades possuem campi da UFCA?
+Chatbot: A Universidade Federal do Cariri possui campi localizados em cinco municípios: Juazeiro do Norte, Barbalha, Crato, Brejo Santo e Icó.
+==================================================
+Usuário:  O que é a UFCA?
+Chatbot: A UFCA é uma universidade federal multicampi, com foco no ensino, pesquisa e extensão para o desenvolvimento social, cultural e econômico da região do Cariri.
+==================================================
+Usuário:  Quais cidades possuem campi da UFCA?
+Chatbot: A Universidade Federal do Cariri possui campi localizados em cinco municípios: Juazeiro do Norte, Barbalha, Crato, Brejo Santo e Icó.
+==================================================
+Usuário:  O que é a UFCA?
+Chatbot: Trata-se de uma autarquia federal, vinculada ao Ministério da Educação, criada pela Lei nº 12.825, de 5 de junho de 2013.
+==================================================
+Usuário:  Quais cidades possuem campi da UFCA?
+Chatbot: As cidades Juazeiro do Norte, Barbalha, Crato, Brejo Santo e Icó abrigam os campi da UFCA.
+==================================================
+Usuário:  Existe algum programa de intercâmbio?
+Chatbot: Sim, a UFCA, por meio da Assessoria de Relações Internacionais (ARINTER), oferece programas de mobilidade acadêmica para diversas instituições no exterior.
+==================================================
+Usuário:  Quais cidades possuem campi da UFCA?
+Chatbot: Os campi da UFCA estão localizados nas cidades de Juazeiro do Norte, Barbalha, Crato, Brejo Santo e Icó.
+==================================================
+Usuário:  O que é a UFCA?
+Chatbot: A Universidade Federal do Cariri (UFCA) é uma instituição de ensino superior pública, federal, com sede em Juazeiro do Norte, Ceará.
+==================================================
