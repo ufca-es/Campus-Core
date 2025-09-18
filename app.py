@@ -19,7 +19,13 @@ def carregar_perguntas_e_categorias():
     with open("data/json_chatbot.json", "r", encoding="utf-8") as arq:
         base_conhecimento = json.load(arq)
     perguntas = [item["pergunta"] for item in base_conhecimento["Formal"]]
-    mapeamento_categorias = { "Vida Acadêmica": ["ingressar", "sigaa", "notas"], "Assistência Estudantil": ["restaurante", "moradia"], "Sobre a UFCA": ["cidades"] }
+    mapeamento_categorias = {
+        "Sobre a UFCA": ["ufca", "história", "missão", "pública", "cidades"],
+        "Vida Acadêmica": ["ingressar", "sigaa", "notas", "trancamento", "matrícula", "horas complementares", "prova final", "carteirinha", "intercâmbio", "coordenador", "falta"],
+        "Locais e Horários": ["biblioteca", "horário", "secretaria", "laboratórios", "auditório", "xerox", "cópias"],
+        "Assistência Estudantil": ["restaurante", "moradia", "prae", "auxílios", "psicológico", "deficiência", "transporte"],
+        "Outros": ["wi-fi", "eduroam", "eventos", "intercampi", "quadras", "achados e perdidos"]
+    }
     categorias = {cat: [] for cat in mapeamento_categorias.keys()}
     for pergunta in perguntas:
         categorizada = False
@@ -36,7 +42,21 @@ bot = carregar_bot()
 categorias = carregar_perguntas_e_categorias()
 
 if "messages" not in st.session_state:
-    st.session_state.messages = [{"role": "assistant", "content": "Olá! Escolha uma personalidade e sua pergunta."}]
+    st.session_state.messages = []
+    # ## <-- CORREÇÃO APLICADA AQUI
+    # Carrega as últimas interações do histórico antes de iniciar.
+    ultimas_interacoes_raw = bot.historico.ler_ultimas_interacoes(n=5)
+    if ultimas_interacoes_raw:
+        st.session_state.messages.append({"role": "assistant", "content": "--- Últimas 5 interações do seu histórico ---"})
+        for interacao in ultimas_interacoes_raw:
+            # Formata as linhas do arquivo de volta para o formato do chat
+            pergunta_raw = interacao[0].replace("Usuário: ", "").strip()
+            resposta_raw = interacao[1].replace("Chatbot: ", "").strip()
+            st.session_state.messages.append({"role": "user", "content": pergunta_raw})
+            st.session_state.messages.append({"role": "assistant", "content": resposta_raw})
+        st.session_state.messages.append({"role": "assistant", "content": "--- Fim do histórico ---"})
+
+    st.session_state.messages.append({"role": "assistant", "content": "Olá! Escolha uma personalidade e sua pergunta."})
     st.session_state.waiting_for_suggestion = False
     st.session_state.question_to_learn = ""
     estatisticas_gerais = Estatisticas(None, None, None, bot.base_conhecimento, bot.historico.arquivo)
@@ -61,9 +81,6 @@ if st.session_state.sugestoes:
                 st.rerun()
     st.divider()
 
-# ## <-- CÓDIGO MOVIDO DAQUI
-# O st.radio e a lógica de definição da personalidade foram movidos para a barra lateral.
-
 st.subheader("Selecione sua Pergunta")
 
 for categoria, perguntas in categorias.items():
@@ -76,8 +93,6 @@ for categoria, perguntas in categorias.items():
                 bot.historico.salvar(pergunta, resposta)
                 st.rerun()
 
-# (O resto da lógica de perguntas e histórico permanece igual)
-# ...
 with st.expander("**Perguntas Aprendidas (memória do bot)**"):
     bot.aprendizado.dados = bot.aprendizado._carregar()
     if not bot.aprendizado.dados:
@@ -127,7 +142,6 @@ with st.container(border=True):
 with st.sidebar:
     st.header("Opções da Sessão")
 
-    # ## <-- PARA CÁ: O seletor de personalidade agora vive na barra lateral.
     st.subheader("1. Escolha a Personalidade")
     personalidade_escolhida = st.radio(
         "Com quem você quer falar?",
@@ -138,7 +152,6 @@ with st.sidebar:
 
     st.divider()
 
-    # O resto da barra lateral continua como estava
     if st.button("Encerrar Sessão e Gerar Relatório"):
         estatisticas = Estatisticas(
             perguntas_chaves_sessao=bot.perguntas_chaves_sessao,
@@ -162,6 +175,7 @@ with st.sidebar:
     st.divider()
 
     st.header("Relatórios Salvos")
+    
     diretorio_relatorios = "relatorios"
     if os.path.exists(diretorio_relatorios) and os.listdir(diretorio_relatorios):
         arquivos = sorted(
@@ -169,6 +183,7 @@ with st.sidebar:
             key=lambda f: os.path.getmtime(os.path.join(diretorio_relatorios, f)),
             reverse=True
         )
+        
         for nome_arquivo in arquivos:
             caminho_completo = os.path.join(diretorio_relatorios, nome_arquivo)
             with open(caminho_completo, "rb") as file:

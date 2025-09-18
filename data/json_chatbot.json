@@ -53,6 +53,231 @@
         "Prédio de moradia? Ainda não temos esse luxo. Mas a PRAE tem o auxílio-moradia, que ajuda a pagar seu cantinho. Melhor que dormir na biblioteca, né?"
       ],
       "keywords": ["moradia", "residência", "dormitório", "alojamento", "auxílio", "aluguel", "prae"]
+    },
+    {
+      "pergunta": "O que é a UFCA?",
+      "resposta": [
+        "É basicamente o lugar onde seus sonhos acadêmicos encontram os boletos do xerox e a ansiedade das provas. Bem-vindo!",
+        "A UFCA? É a fábrica de diplomas e de gente que toma muito café aqui no Cariri. Um lugar incrível, apesar dos pesares.",
+        "Pense nela como a Hogwarts do Cariri, só que em vez de magia, a gente aprende cálculo e a sobreviver com o dinheiro do auxílio."
+      ],
+      "keywords": ["o que é", "sobre a", "ufca"]
+    },
+    {
+      "pergunta": "Qual a história da UFCA?",
+      "resposta": [
+        "A UFCA era um campus da UFC e, em 2013, virou gente grande e se tornou uma universidade independente. Basicamente, nosso glow up acadêmico.",
+        "Ela nasceu como um filhote da UFC e depois resolveu sair de casa pra conquistar o mundo... ou pelo menos o Cariri.",
+        "É uma história de emancipação! Antes éramos UFC, agora somos UFCA. Mais letras, mais responsabilidades."
+      ],
+      "keywords": ["história", "criação", "fundação"]
+    },
+    {
+      "pergunta": "A UFCA é uma universidade pública ou privada?",
+      "resposta": [
+        "É pública, gratuita e de qualidade! O que significa que você não paga mensalidade, mas paga com a sua sanidade mental em época de provas.",
+        "Pública! Ou seja, mantida com o suor dos impostos da nação. Use com sabedoria e não quebre as cadeiras, por favor.",
+        "É mais pública que praça de cidade pequena. Pode vir que é de graça, só não esquece de trazer o cérebro pra fritar."
+      ],
+      "keywords": ["pública", "privada", "gratuita", "paga"]
+    },
+    {
+      "pergunta": "Como funciona o trancamento de matrícula?",
+      "resposta": [
+        "Precisando de um tempo pra colocar a série em dia? Você pode trancar o curso por um tempo, mas fica de olho nos prazos do calendário acadêmico pra não perder a vaga!",
+        "Trancar a matrícula é tipo dar um pause na vida universitária. Você congela tudo e volta depois, mas cuidado pra não congelar por tempo demais.",
+        "É o famoso 'até logo' acadêmico. Você pede uma licença, resolve sua vida e depois volta pra terminar o sofr... digo, o curso."
+      ],
+      "keywords": ["trancamento", "trancar", "matrícula", "pausar"]
+    },
+    {
+      "pergunta": "O que são horas complementares?",
+      "resposta": [
+        "São as 'missões secundárias' da sua graduação. Participar de eventos, cursos, palestras... tudo pra mostrar que você fez mais do que só ir pra aula.",
+        "Horas complementares são a prova de que você teve uma vida social... acadêmica. Congressos, simpósios, monitoria, tudo conta!",
+        "Pense nelas como os 'achievements' do seu curso. Você precisa de um certo número pra zerar o jogo e pegar seu diploma."
+      ],
+      "keywords": ["horas complementares", "atividades", "acc"]
+    },
+    {
+      "pergunta": "Como funciona a prova final?",
+      "resposta": [
+        "A prova final é a sua chance de redenção. Se sua média ficou entre 4 e 6.9, você faz uma última prova valendo tudo ou nada. Boa sorte, você vai precisar.",
+        "É o 'chefão final' do semestre. Se você não derrotou os inimigos mais fracos (as provas normais), vai ter que encarar ele pra não dar game over.",
+        "A famosa final. É quando a universidade te pergunta: 'você tem certeza que aprendeu alguma coisa?'. Se passar, ufa. Se não, te vejo no próximo semestre."
+      ],
+      "keywords": ["prova final", "avaliação final", "recuperação"]
+    },
+    {
+      "pergunta": "Como solicitar a carteirinha de estudante?",
+      "resposta": [
+        "A carteirinha é seu ticket dourado pros descontos! Geralmente o Diretório Acadêmico (DA) do seu curso organiza a solicitação no início do ano. Fica ligado nos grupos!",
+        "Quer pagar meia no cinema? Cola no seu DA! Eles que resolvem o B.O. da carteirinha de estudante. Leva uma foto 3x4 e uns trocados.",
+        "É a sua identidade secreta de super-herói universitário. Pra conseguir uma, procura o pessoal do seu Diretório Acadêmico, eles são os 'Nick Fury' dessa missão."
+      ],
+      "keywords": ["carteirinha", "documento", "estudante"]
+    },
+    {
+      "pergunta": "Existe algum programa de intercâmbio?",
+      "resposta": [
+        "Sim! A UFCA tem uns programas maneiros pra você dar um rolê pelo mundo. Fica de olho nos editais da Assessoria de Relações Internacionais, a ARINTER.",
+        "Quer carimbar o passaporte? A ARINTER é sua melhor amiga. Eles vivem lançando editais de intercâmbio pra tudo que é canto.",
+        "Com certeza! É sua chance de estudar fora e tirar foto bonita pra postar. A ARINTER cuida disso, só não esquece de estudar outra língua, né?"
+      ],
+      "keywords": ["intercâmbio", "estudar fora", "arinter"]
+    },
+    {
+      "pergunta": "Como posso falar com o coordenador do meu curso?",
+      "resposta": [
+        "Geralmente o coordenador tem um horário de atendimento na sala da coordenação. É só aparecer por lá pra chorar as pitangas ou resolver um pepino.",
+        "Achar o coordenador pode ser uma aventura. O melhor jeito é mandar um e-mail antes ou checar na secretaria o horário que a fera costuma aparecer na jaula.",
+        "É tipo invocar um gênio. Você precisa ir até o templo (a sala da coordenação) na hora certa. Ou só manda um e-mail, é mais fácil."
+      ],
+      "keywords": ["coordenador", "coordenação", "falar com"]
+    },
+    {
+      "pergunta": "Onde fica a biblioteca do campus Juazeiro e qual seu horário?",
+      "resposta": [
+        "A biblioteca de Juazeiro é o paraíso do silêncio, fica no Bloco K. Costuma abrir de manhãzinha e fechar só à noite, mas é bom confirmar o horário no site.",
+        "Procurando um lugar pra fingir que estuda? A biblioteca do Bloco K em Juazeiro é perfeita! Funciona em horário comercial estendido, ideal para os desesperados de última hora.",
+        "Fica no Bloco K. O horário? É aquele que você nunca vai, mas que jura que vai começar a frequentar toda segunda-feira. Checa no site oficial."
+      ],
+      "keywords": ["biblioteca", "juazeiro", "horário", "livros"]
+    },
+    {
+      "pergunta": "Qual o horário de funcionamento da secretaria (CCA)?",
+      "resposta": [
+        "A secretaria, também conhecida como Centro de Controle Acadêmico, geralmente funciona em horário comercial, de manhã e à tarde. Mas sempre dá uma ligadinha antes pra não dar com a cara na porta.",
+        "O CCA? Eles trabalham de manhã e à tarde. Se você for lá fora desse horário, vai encontrar só a solidão e um aviso de 'Volto logo'.",
+        "Eles têm um horário que desafia a lógica do estudante, que só quer resolver as coisas às 19h. Tenta ir de 8h às 17h, com uma pausa pro almoço deles, claro."
+      ],
+      "keywords": ["secretaria", "cca", "funcionamento", "atendimento"]
+    },
+    {
+      "pergunta": "Onde posso encontrar os laboratórios de informática?",
+      "resposta": [
+        "Os 'labs' de info ficam espalhados pelos blocos, dependendo do curso. A melhor tática é perguntar a um veterano onde fica o 'aquário' mais próximo.",
+        "Procurando um PC com Windows XP e Internet Explorer? Brincadeira! Os laboratórios de informática ficam nos blocos de aula, só seguir o som dos teclados.",
+        "Geralmente tem uma placa gigante escrito 'Laboratório de Informática'. Se não achar, segue o cheiro de desespero de quem tá fazendo trabalho na véspera."
+      ],
+      "keywords": ["laboratórios", "informática", "computadores", "pc"]
+    },
+    {
+      "pergunta": "Onde fica o setor da PRAE?",
+      "resposta": [
+        "A PRAE, sua fada madrinha dos auxílios, geralmente fica nos blocos administrativos. Em Juazeiro, fica perto da reitoria. É lá que a mágica (e a burocracia) acontece.",
+        "Procurando a fonte da juventude... ou dos auxílios? A PRAE fica nos prédios da administração. Segue o fluxo de gente com uma pasta cheia de documentos.",
+        "É o lugar onde você vai implorar por ajuda financeira. Fica na parte chique da universidade, a administração. Só levar seus 300 documentos e um lanchinho, a espera pode ser longa."
+      ],
+      "keywords": ["setor", "prae", "localização"]
+    },
+    {
+      "pergunta": "As quadras esportivas são abertas ao público?",
+      "resposta": [
+        "As quadras são nossas! Para usar, geralmente precisa agendar com o pessoal da atlética ou do centro esportivo. É a chance de mostrar seu talento... ou só de correr mesmo.",
+        "São da comunidade acadêmica. Não é um parque público, mas se você é aluno, pode juntar uma galera e agendar um horário pra bater uma bola.",
+        "Quer usar a quadra? Tem que ser da casa. Alunos e servidores podem agendar. Se você for de fora, assista da arquibancada e aplauda."
+      ],
+      "keywords": ["quadras", "esportivas", "jogar", "esporte"]
+    },
+    {
+      "pergunta": "Onde fica o auditório principal?",
+      "resposta": [
+        "O auditório principal, palco de grandes eventos (e de algumas aulas chatas), geralmente fica num lugar de destaque no campus. Em Juazeiro, é difícil não vê-lo.",
+        "É aquele lugar grandão onde você vai para as boas-vindas e para a formatura. Se não sabe onde é, provavelmente você é calouro. Sem ofensas.",
+        "Se tem um evento importante, vai ser lá. Procura pelo prédio com mais cara de importante e que parece um teatro. Se ouvir palmas, é lá."
+      ],
+      "keywords": ["auditório", "principal", "eventos"]
+    },
+    {
+      "pergunta": "Onde posso tirar cópias ou imprimir trabalhos (xerox)?",
+      "resposta": [
+        "Geralmente tem uma 'lojinha' de xerox dentro ou bem perto da universidade que salva a vida dos estudantes. É o lugar mais visitado em fim de semestre.",
+        "A famosa xerox! Procure pelo lugar com a maior fila de gente desesperada com um pen drive na mão. Costuma ter uma em cada campus.",
+        "Sempre tem uma alma empreendedora perto da faculdade que vive de imprimir trabalhos de última hora. Procura a placa 'XEROX' e entrega seu dinheiro e sua alma."
+      ],
+      "keywords": ["cópias", "imprimir", "xerox"]
+    },
+    {
+      "pergunta": "Quais outros auxílios a PRAE oferece?",
+      "resposta": [
+        "A PRAE é uma caixinha de surpresas! Além da moradia, tem auxílio alimentação, transporte, creche... um monte de coisa pra ajudar o estudante a não passar perrengue.",
+        "Tem um cardápio completo de auxílios: alimentação pra não morrer de fome, transporte pra não ir a pé, e até creche se você já tiver um mini-universitário.",
+        "Pensa numa necessidade, a PRAE provavelmente tem um auxílio pra ela. Dá uma olhada no site deles pra ver o catálogo completo de 'bênçãos financeiras'."
+      ],
+      "keywords": ["outros", "auxílios", "programas"]
+    },
+    {
+      "pergunta": "Como funciona o atendimento psicológico?",
+      "resposta": [
+        "Se o semestre apertar e a ansiedade bater, a UFCA oferece apoio psicológico de graça. É só procurar a PRAE ou o setor de psicologia para agendar. Cuidar da mente é tão importante quanto passar em cálculo!",
+        "A vida universitária te enlouqueceu? Normal. A UFCA tem psicólogos para te ajudar a não surtar. O serviço é gratuito e confidencial. Agenda lá!",
+        "É tipo uma UTI pra sua saúde mental. Quando a coisa ficar feia, corre pra lá. É de graça e pode te salvar de um colapso antes das provas finais."
+      ],
+      "keywords": ["atendimento", "psicológico", "psicólogo", "saúde mental"]
+    },
+    {
+      "pergunta": "Existe algum apoio para estudantes com deficiência?",
+      "resposta": [
+        "Com certeza! A UFCA tem um setor de acessibilidade para garantir que todos os estudantes tenham as mesmas oportunidades. Eles oferecem apoio e recursos específicos.",
+        "Sim, e é super importante! O núcleo de acessibilidade ajuda com tudo que for preciso pra galera com deficiência poder estudar numa boa. Inclusão é a palavra-chave!",
+        "Claro! A universidade se esforça para não ser excludente. O setor de acessibilidade existe pra quebrar as barreiras e ajudar quem precisa."
+      ],
+      "keywords": ["apoio", "deficiência", "acessibilidade", "inclusão"]
+    },
+    {
+      "pergunta": "Como faço para conseguir o auxílio-transporte?",
+      "resposta": [
+        "Para não ter que vir de jegue, você pode solicitar o auxílio-transporte. Fica de olho nos editais da PRAE, junta a papelada e se inscreve. Ajuda bastante no fim do mês!",
+        "Cansado de gastar a sola do sapato? A PRAE lança editais para o auxílio-transporte. É uma graninha pra ajudar a pagar o busão.",
+        "É um processo: edital, inscrição, um monte de documentos e uma espera ansiosa. Se tudo der certo, você ganha uma ajuda pra não depender de carona."
+      ],
+      "keywords": ["conseguir", "auxílio-transporte", "passagem", "ônibus"]
+    },
+    {
+      "pergunta": "Como funciona a rede Wi-Fi (Eduroam)?",
+      "resposta": [
+        "A Eduroam é a rede Wi-Fi que te segue em várias universidades do mundo! Para conectar, seu login é seu email institucional completo e a senha é a mesma do SIGAA.",
+        "É a internet dos ninjas acadêmicos. Você configura uma vez e ela conecta sozinha em qualquer lugar que tenha Eduroam. Login é o email, senha é a do SIGAA.",
+        "Pense na Eduroam como um Wi-Fi VIP. Seu passe de entrada é o email institucional e a senha do SIGAA. Conectou, agora pode gastar seus dados com coisas mais importantes, tipo memes."
+      ],
+      "keywords": ["wi-fi", "wifi", "eduroam", "internet", "conectar"]
+    },
+    {
+      "pergunta": "Existem eventos culturais ou esportivos na UFCA?",
+      "resposta": [
+        "Sim! A UFCA é cheia de vida. Tem os jogos Intercampi, semanas de curso, festivais de cultura... Sempre tem alguma coisa rolando pra te distrair dos estudos.",
+        "Claro! A gente não vive só de prova. Fica de olho no Intercampi pra gritar pela sua atlética e nas semanas culturais pra ver coisa diferente.",
+        "Tem de tudo um pouco. Evento esportivo pra suar a camisa e evento cultural pra fingir que a gente é intelectual. É só ficar de olho na agenda."
+      ],
+      "keywords": ["eventos", "culturais", "esportivos", "intercampi"]
+    },
+    {
+      "pergunta": "O que acontece se eu reprovar por falta?",
+      "resposta": [
+        "Aí a chapa esquenta. Se estourar as faltas (mais de 25%), você é reprovado direto, não importa suas notas. É o famoso 'game over' por WO. Então, apareça nas aulas!",
+        "Reprovar por falta é tipo ser eliminado do BBB por desistência. Você nem teve a chance de lutar. Controle suas faltas no SIGAA e não dê esse mole.",
+        "Significa que você vai ter o desprazer de pagar a mesma disciplina de novo, gastando seu tempo e sua paciência. A cadeira da sala de aula sente sua falta, vai por mim."
+      ],
+      "keywords": ["reprovar", "falta", "frequência"]
+    },
+    {
+      "pergunta": "Qual a missão da UFCA?",
+      "resposta": [
+        "A missão é basicamente formar gente boa e inteligente que ajude a desenvolver a região do Cariri, produzindo conhecimento e cultura. Uma meta nobre, né?",
+        "É transformar jovens sonhadores em profissionais competentes... e um pouco endividados com a xerox. Tudo em nome da ciência e do progresso regional!",
+        "É tipo a missão de um super-herói: usar seus 'poderes' (ensino, pesquisa, extensão) para salvar a região e formar uma nova geração de Vingadores... acadêmicos."
+      ],
+      "keywords": ["missão", "valores", "objetivo"]
+    },
+    {
+      "pergunta": "Onde fica o 'achados e perdidos'?",
+      "resposta": [
+        "Perdeu alguma coisa? Geralmente, os objetos encontrados são levados para a secretaria principal do campus ou para a portaria. Dá uma passada lá, seu guarda-chuva pode estar te esperando.",
+        "O 'achados e perdidos' oficial costuma ser na recepção ou na secretaria. É a última esperança para o seu carregador de celular que você esqueceu na tomada.",
+        "É um lugar místico que fica entre a esperança e a realidade. Tenta a sorte na secretaria do seu bloco. Se não estiver lá, já era."
+      ],
+      "keywords": ["achados e perdidos", "perdi", "encontrados"]
     }
   ],
   "Formal": [
@@ -109,6 +334,231 @@
         "Não há residência universitária nos campi. A política de assistência contempla, porém, um auxílio pecuniário de moradia para estudantes elegíveis."
       ],
       "keywords": ["moradia", "residência", "dormitório", "alojamento", "auxílio", "aluguel", "prae"]
+    },
+    {
+      "pergunta": "O que é a UFCA?",
+      "resposta": [
+        "A Universidade Federal do Cariri (UFCA) é uma instituição de ensino superior pública, federal, com sede em Juazeiro do Norte, Ceará.",
+        "Trata-se de uma autarquia federal, vinculada ao Ministério da Educação, criada pela Lei nº 12.825, de 5 de junho de 2013.",
+        "A UFCA é uma universidade federal multicampi, com foco no ensino, pesquisa e extensão para o desenvolvimento social, cultural e econômico da região do Cariri."
+      ],
+      "keywords": ["o que é", "sobre a", "ufca"]
+    },
+    {
+      "pergunta": "Qual a história da UFCA?",
+      "resposta": [
+        "A UFCA foi criada em 2013, a partir do desmembramento do então Campus Cariri da Universidade Federal do Ceará (UFC).",
+        "Sua origem remonta a 2006, como um campus da UFC, tornando-se uma universidade autônoma em 5 de junho de 2013.",
+        "A instituição é resultado de um processo de expansão e interiorização do ensino superior federal, consolidando-se como universidade própria em 2013."
+      ],
+      "keywords": ["história", "criação", "fundação"]
+    },
+    {
+      "pergunta": "A UFCA é uma universidade pública ou privada?",
+      "resposta": [
+        "A UFCA é uma instituição de natureza jurídica pública, de âmbito federal.",
+        "Trata-se de uma universidade pública e gratuita, mantida pela União.",
+        "Como universidade federal, a UFCA integra a rede de instituições públicas de ensino superior do Brasil."
+      ],
+      "keywords": ["pública", "privada", "gratuita", "paga"]
+    },
+    {
+      "pergunta": "Como funciona o trancamento de matrícula?",
+      "resposta": [
+        "O trancamento total de matrícula consiste na interrupção das atividades acadêmicas por um período letivo, solicitado via SIGAA dentro dos prazos do calendário acadêmico.",
+        "O discente pode solicitar o trancamento do curso, suspendendo sua matrícula por até dois períodos letivos, consecutivos ou não, conforme as normas acadêmicas.",
+        "O procedimento para trancamento de matrícula deve ser realizado pelo estudante no SIGAA, observando as datas estipuladas no calendário universitário."
+      ],
+      "keywords": ["trancamento", "trancar", "matrícula", "pausar"]
+    },
+    {
+      "pergunta": "O que são horas complementares?",
+      "resposta": [
+        "Atividades Complementares são componentes curriculares que visam enriquecer a formação do aluno, por meio da participação em eventos, projetos e outras atividades acadêmicas.",
+        "Consistem em uma carga horária que o discente deve cumprir em atividades de ensino, pesquisa ou extensão, para além das disciplinas regulares, para integralização do curso.",
+        "São um conjunto de atividades acadêmico-científico-culturais que devem ser realizadas pelo estudante para completar os requisitos de sua graduação."
+      ],
+      "keywords": ["horas complementares", "atividades", "acc"]
+    },
+    {
+      "pergunta": "Como funciona a prova final?",
+      "resposta": [
+        "A avaliação final é um direito do discente que obtém média parcial entre 4,0 e 6,9. A aprovação requer que a média aritmética entre a parcial e a final seja igual ou superior a 5,0.",
+        "Caso o estudante não atinja a média 7,0, mas obtenha ao menos 4,0, ele poderá realizar uma avaliação final. A nota final será a média ponderada entre a nota da avaliação e a média parcial.",
+        "A prova final é uma avaliação única que abrange todo o conteúdo do semestre, destinada aos alunos com média insuficiente para aprovação direta, mas suficiente para esta recuperação."
+      ],
+      "keywords": ["prova final", "avaliação final", "recuperação"]
+    },
+    {
+      "pergunta": "Como solicitar a carteirinha de estudante?",
+      "resposta": [
+        "A carteira de identificação estudantil, que garante o direito à meia-entrada, é emitida por entidades estudantis como o Diretório Central dos Estudantes (DCE) ou os Diretórios Acadêmicos (DAs).",
+        "A solicitação da carteirinha de estudante deve ser verificada junto ao Diretório Acadêmico (DA) do seu curso, que organiza o processo de emissão anualmente.",
+        "As entidades representativas discentes são as responsáveis pela confecção da carteira de estudante. Procure o DA ou DCE para informações sobre prazos e documentos."
+      ],
+      "keywords": ["carteirinha", "documento", "estudante"]
+    },
+    {
+      "pergunta": "Existe algum programa de intercâmbio?",
+      "resposta": [
+        "Sim, a UFCA, por meio da Assessoria de Relações Internacionais (ARINTER), oferece programas de mobilidade acadêmica para diversas instituições no exterior.",
+        "A ARINTER é o setor responsável por divulgar e gerenciar os editais de intercâmbio. Recomenda-se acompanhar o site oficial para oportunidades.",
+        "Existem programas de mobilidade internacional. Os discentes interessados devem atender aos critérios dos editais publicados pela ARINTER."
+      ],
+      "keywords": ["intercâmbio", "estudar fora", "arinter"]
+    },
+    {
+      "pergunta": "Como posso falar com o coordenador do meu curso?",
+      "resposta": [
+        "O contato com a coordenação do curso pode ser feito por e-mail institucional ou presencialmente, durante os horários de atendimento divulgados pela secretaria.",
+        "Recomenda-se agendar um horário com o coordenador através do e-mail da coordenação para garantir o atendimento.",
+        "Informações sobre os horários de atendimento e o contato do coordenador do seu curso estão disponíveis na página do curso no site da UFCA."
+      ],
+      "keywords": ["coordenador", "coordenação", "falar com"]
+    },
+    {
+      "pergunta": "Onde fica a biblioteca do campus Juazeiro e qual seu horário?",
+      "resposta": [
+        "A Biblioteca do campus Juazeiro do Norte está localizada no Bloco K. O horário de funcionamento pode ser consultado no site do Sistema de Bibliotecas da UFCA (SIBI/UFCA).",
+        "Localizada no Bloco K, a biblioteca de Juazeiro funciona em horário estendido durante o período letivo. Verifique o horário exato no site oficial.",
+        "O acervo da biblioteca de Juazeiro fica no Bloco K. Os horários de funcionamento estão sujeitos a alterações, sendo recomendável a consulta prévia online."
+      ],
+      "keywords": ["biblioteca", "juazeiro", "horário", "livros"]
+    },
+    {
+      "pergunta": "Qual o horário de funcionamento da secretaria (CCA)?",
+      "resposta": [
+        "O Centro de Controle Acadêmico (CCA) geralmente funciona em horário administrativo, das 8h às 12h e das 13h às 17h. Recomenda-se confirmar previamente.",
+        "O atendimento da secretaria acadêmica ocorre em horário comercial. Para questões específicas, verifique os canais de comunicação do seu curso.",
+        "O horário padrão de funcionamento do CCA é de segunda a sexta, em horário comercial. Alterações podem ocorrer e são divulgadas nos canais oficiais."
+      ],
+      "keywords": ["secretaria", "cca", "funcionamento", "atendimento"]
+    },
+    {
+      "pergunta": "Onde posso encontrar os laboratórios de informática?",
+      "resposta": [
+        "Os laboratórios de informática estão distribuídos nos blocos de salas de aula, geralmente identificados por placas. A localização pode variar conforme o curso.",
+        "Cada centro acadêmico dispõe de laboratórios de informática para uso dos discentes. Consulte a coordenação do seu curso para saber a localização exata.",
+        "Para encontrar um laboratório de informática, verifique nos blocos de seu centro ou solicite a informação na secretaria do curso."
+      ],
+      "keywords": ["laboratórios", "informática", "computadores", "pc"]
+    },
+    {
+      "pergunta": "Onde fica o setor da PRAE?",
+      "resposta": [
+        "A Pró-Reitoria de Assuntos Estudantis (PRAE) localiza-se nos prédios da administração central de cada campus. Em Juazeiro do Norte, está no Bloco I.",
+        "O setor de atendimento da PRAE fica no prédio da administração do campus. Consulte o mapa do campus para a localização exata.",
+        "Para assuntos relacionados à assistência estudantil, dirija-se à PRAE, cujo setor de atendimento se encontra no prédio administrativo."
+      ],
+      "keywords": ["setor", "prae", "localização"]
+    },
+    {
+      "pergunta": "As quadras esportivas são abertas ao público?",
+      "resposta": [
+        "As instalações esportivas são de uso exclusivo da comunidade acadêmica (discentes e servidores). A utilização requer agendamento prévio.",
+        "O uso das quadras é restrito a alunos e servidores da UFCA, mediante reserva de horário junto ao setor responsável.",
+        "Não são abertas ao público externo. O acesso e utilização dos espaços esportivos são regulamentados e destinados à comunidade universitária."
+      ],
+      "keywords": ["quadras", "esportivas", "jogar", "esporte"]
+    },
+    {
+      "pergunta": "Onde fica o auditório principal?",
+      "resposta": [
+        "O auditório principal de cada campus geralmente está localizado em um bloco central ou de destaque. Em Juazeiro do Norte, localiza-se no Bloco I.",
+        "A localização do auditório principal pode ser encontrada no mapa oficial do campus, disponível no site da UFCA.",
+        "Para eventos de grande porte, utiliza-se o auditório principal. Dirija-se ao bloco administrativo ou central para encontrá-lo."
+      ],
+      "keywords": ["auditório", "principal", "eventos"]
+    },
+    {
+      "pergunta": "Onde posso tirar cópias ou imprimir trabalhos (xerox)?",
+      "resposta": [
+        "A universidade não possui um serviço de reprografia oficial. No entanto, existem estabelecimentos comerciais privados que oferecem este serviço nas proximidades dos campi.",
+        "Serviços de cópia e impressão são oferecidos por empresas privadas localizadas no entorno da universidade.",
+        "Para realizar impressões ou cópias, os discentes devem procurar os serviços de reprografia disponíveis comercialmente nas adjacências do campus."
+      ],
+      "keywords": ["cópias", "imprimir", "xerox"]
+    },
+    {
+      "pergunta": "Quais outros auxílios a PRAE oferece?",
+      "resposta": [
+        "Além do auxílio-moradia, a PRAE gerencia outros programas, como o auxílio-alimentação, auxílio-transporte e auxílio-creche, conforme editais específicos.",
+        "A política de assistência estudantil da UFCA inclui diversos auxílios, como alimentação, transporte, moradia e apoio a estudantes com filhos. Consulte os editais da PRAE.",
+        "A PRAE disponibiliza um leque de auxílios para promover a permanência do discente. A elegibilidade é definida por meio de análise socioeconômica e editais."
+      ],
+      "keywords": ["outros", "auxílios", "programas"]
+    },
+    {
+      "pergunta": "Como funciona o atendimento psicológico?",
+      "resposta": [
+        "A UFCA oferece atendimento psicológico gratuito aos discentes, gerenciado pela PRAE. O agendamento pode ser solicitado por e-mail ou presencialmente no setor.",
+        "O serviço de apoio psicológico visa o bem-estar e a saúde mental dos estudantes. O atendimento é sigiloso e deve ser agendado junto à equipe de psicologia da PRAE.",
+        "Discentes que necessitem de suporte psicológico podem procurar o serviço oferecido pela universidade. O agendamento é realizado diretamente com o setor responsável."
+      ],
+      "keywords": ["atendimento", "psicológico", "psicólogo", "saúde mental"]
+    },
+    {
+      "pergunta": "Existe algum apoio para estudantes com deficiência?",
+      "resposta": [
+        "Sim, a UFCA possui o setor de Acessibilidade, que oferece suporte e recursos de tecnologia assistiva para garantir a inclusão e permanência de estudantes com deficiência.",
+        "A universidade promove a inclusão através de um setor de acessibilidade, que disponibiliza apoio pedagógico, intérpretes de Libras e outros recursos necessários.",
+        "O apoio a discentes com deficiência é uma das prioridades da política de inclusão da UFCA, coordenado pelo setor de Acessibilidade."
+      ],
+      "keywords": ["apoio", "deficiência", "acessibilidade", "inclusão"]
+    },
+    {
+      "pergunta": "Como faço para conseguir o auxílio-transporte?",
+      "resposta": [
+        "O auxílio-transporte é concedido mediante processo seletivo, regulado por edital publicado pela PRAE. É necessário atender aos critérios socioeconômicos.",
+        "Para solicitar o auxílio-transporte, o discente deve se inscrever no edital da PRAE quando este estiver aberto, submetendo a documentação comprobatória exigida.",
+        "A concessão do auxílio-transporte depende de classificação em edital da PRAE, que avalia a vulnerabilidade socioeconômica do estudante."
+      ],
+      "keywords": ["conseguir", "auxílio-transporte", "passagem", "ônibus"]
+    },
+    {
+      "pergunta": "Como funciona a rede Wi-Fi (Eduroam)?",
+      "resposta": [
+        "A Eduroam é a rede sem fio segura disponível na UFCA. A autenticação é feita utilizando o e-mail institucional completo como login e a mesma senha do SIGAA.",
+        "Para acessar a rede Eduroam, utilize suas credenciais institucionais: o login é o seu e-mail (@ufca.edu.br) e a senha é a mesma dos sistemas integrados (SIGAA).",
+        "A conexão à rede Wi-Fi Eduroam requer o uso do e-mail institucional como nome de usuário e a senha do SIGAA. O serviço está disponível em todos os campi."
+      ],
+      "keywords": ["wi-fi", "wifi", "eduroam", "internet", "conectar"]
+    },
+    {
+      "pergunta": "Existem eventos culturais ou esportivos na UFCA?",
+      "resposta": [
+        "Sim, a universidade promove diversos eventos, como os Jogos Intercampi, semanas de cursos, e festivais culturais, organizados pelas pró-reitorias e centros acadêmicos.",
+        "O calendário acadêmico da UFCA inclui uma variedade de eventos culturais e esportivos que visam a integração da comunidade universitária.",
+        "A UFCA incentiva a realização de atividades culturais e esportivas. Acompanhe os canais de comunicação oficiais para se informar sobre a programação."
+      ],
+      "keywords": ["eventos", "culturais", "esportivos", "intercampi"]
+    },
+    {
+      "pergunta": "O que acontece se eu reprovar por falta?",
+      "resposta": [
+        "A reprovação por falta ocorre quando o discente excede o limite de 25% de ausências na carga horária da disciplina, independentemente de suas notas.",
+        "Conforme as normas de graduação, a frequência inferior a 75% em uma disciplina resulta na reprovação do estudante por insuficiência de frequência.",
+        "Exceder o limite de faltas permitido (25%) implica em reprovação automática na disciplina, sendo necessário cursá-la novamente em outro período letivo."
+      ],
+      "keywords": ["reprovar", "falta", "frequência"]
+    },
+    {
+      "pergunta": "Qual a missão da UFCA?",
+      "resposta": [
+        "A missão da UFCA é produzir e disseminar conhecimento em diversas áreas, contribuindo para a formação de cidadãos críticos e para o desenvolvimento sustentável da região.",
+        "Conforme seu estatuto, a missão da universidade é promover a educação superior de qualidade, por meio da indissociabilidade entre ensino, pesquisa e extensão.",
+        "A UFCA tem por missão a formação de recursos humanos e a produção de conhecimento, visando o desenvolvimento social, cultural e econômico do Ceará e do Brasil."
+      ],
+      "keywords": ["missão", "valores", "objetivo"]
+    },
+    {
+      "pergunta": "Onde fica o 'achados e perdidos'?",
+      "resposta": [
+        "Não há um setor centralizado de 'achados e perdidos'. Objetos encontrados geralmente são encaminhados para a secretaria do bloco ou para a portaria principal do campus.",
+        "Itens perdidos e subsequentemente encontrados devem ser procurados nas secretarias administrativas ou na recepção do campus onde o objeto foi perdido.",
+        "Recomenda-se que o discente que perdeu um objeto pessoal verifique junto à secretaria ou à equipe de segurança do campus."
+      ],
+      "keywords": ["achados e perdidos", "perdi", "encontrados"]
     }
   ],
   "Rude": [
@@ -117,7 +567,7 @@
       "resposta": [
         "Quer entrar na UFCA? Estuda ou desiste — não tem milagre. Pra você não chorar depois, eu recomendo olhar a documentação e as datas no site da ufca.",
         "Se não estudar, esquece: ENEM e SISU são cruéis com preguiçosos. Cuidado pra não ficar afogado na preguiça e esquecer de olhar as datas e as documentações da ufca",
-        "Quer passar na UFCA? Mexa o traseiro, faz o ENEM e torce para o SISU não te dar um chega pra lá. "
+        "Quer passar na UFCA? Mexa o traseiro, faz o ENEM e torce para o SISU não te dar um chega pra lá."
       ],
       "keywords": ["ingressar", "entrar", "sisu", "enem"]
     },
@@ -165,6 +615,231 @@
         "A universidade não vai te dar uma casa. O que ela pode dar é o auxílio-moradia, e só se você provar que precisa."
       ],
       "keywords": ["moradia", "residência", "dormitório", "alojamento", "auxílio", "aluguel", "prae"]
+    },
+    {
+      "pergunta": "O que é a UFCA?",
+      "resposta": [
+        "Sério? É a Universidade Federal do Cariri. O nome é bem autoexplicativo, não acha?",
+        "É a instituição de ensino onde você supostamente estuda. Surpreso?",
+        "É uma universidade. Pública. Gratuita. O tipo de lugar que você deveria valorizar mais em vez de fazer perguntas óbvias."
+      ],
+      "keywords": ["o que é", "sobre a", "ufca"]
+    },
+    {
+      "pergunta": "Qual a história da UFCA?",
+      "resposta": [
+        "Nasceu da UFC em 2013. Fim da história. Próxima pergunta.",
+        "Uma busca de 5 segundos no Google te daria essa resposta. Mas já que insiste: era um campus da UFC e virou universidade.",
+        "Não sou o datafolha, mas ok: foi criada em 2013. Satisfeito com essa informação trivial?"
+      ],
+      "keywords": ["história", "criação", "fundação"]
+    },
+    {
+      "pergunta": "A UFCA é uma universidade pública ou privada?",
+      "resposta": [
+        "Se fosse privada, você acha que estaria aqui me fazendo perguntas em vez de estar pagando um boleto? É pública.",
+        "É pública. Se você paga alguma coisa, provavelmente é o xerox ou o lanche, não a mensalidade.",
+        "É federal, logo, pública. A não ser que tenham privatizado e esqueceram de me avisar."
+      ],
+      "keywords": ["pública", "privada", "gratuita", "paga"]
+    },
+    {
+      "pergunta": "Como funciona o trancamento de matrícula?",
+      "resposta": [
+        "Funciona para quem quer dar um tempo. Mas se você perder o prazo pra trancar ou pra voltar, o problema é seu.",
+        "É o botão de desistência temporário. Você aperta, foge, e depois volta. Só não some pra sempre.",
+        "Você pede pra parar o mundo que você quer descer. Acessa o SIGAA e clica em 'trancar'. Se não souber fazer nem isso..."
+      ],
+      "keywords": ["trancamento", "trancar", "matrícula", "pausar"]
+    },
+    {
+      "pergunta": "O que são horas complementares?",
+      "resposta": [
+        "São a prova de que você não passou o curso todo só dormindo. É a parte do currículo que você tem que correr atrás sozinho.",
+        "É uma carga horária que inventaram pra você não se formar tão rápido. Vá a uns eventos, pegue uns certificados e entregue na coordenação.",
+        "Basicamente, um monte de atividades extras que você é obrigado a fazer. Ninguém disse que seria fácil."
+      ],
+      "keywords": ["horas complementares", "atividades", "acc"]
+    },
+    {
+      "pergunta": "Como funciona a prova final?",
+      "resposta": [
+        "É a punição para quem não estudou o suficiente durante o semestre. Você faz uma prova, se passar, passou. Se não, nos vemos de novo ano que vem.",
+        "Funciona como um lembrete de que você deveria ter estudado para as provas anteriores. É sua última chance antes do fracasso.",
+        "É simples: você não atingiu a média, então a universidade te dá uma segunda chance de provar que você não é um caso perdido."
+      ],
+      "keywords": ["prova final", "avaliação final", "recuperação"]
+    },
+    {
+      "pergunta": "Como solicitar a carteirinha de estudante?",
+      "resposta": [
+        "Procure o seu Diretório Acadêmico. Eles que lidam com essa burocracia. Não, eu não sou o DA.",
+        "Acha mesmo que a carteirinha aparece magicamente? Vá atrás do seu DA, pague a taxa e espere. Como todo mundo.",
+        "Você precisa de uma carteirinha pra provar que é estudante? Achei que as olheiras já eram prova suficiente. Fale com o DA."
+      ],
+      "keywords": ["carteirinha", "documento", "estudante"]
+    },
+    {
+      "pergunta": "Existe algum programa de intercâmbio?",
+      "resposta": [
+        "Sim, existe um setor chamado ARINTER. Se você tiver notas pra isso e souber falar outra língua além de português, talvez tenha uma chance.",
+        "Existe, mas não é pra qualquer um. Se você acha que intercâmbio é só festa em outro país, melhor ficar por aqui mesmo.",
+        "Tem. Procura a ARINTER. Mas já vou avisando, eles não dão passagem pra quem não se esforça."
+      ],
+      "keywords": ["intercâmbio", "estudar fora", "arinter"]
+    },
+    {
+      "pergunta": "Como posso falar com o coordenador do meu curso?",
+      "resposta": [
+        "Indo na sala da coordenação no horário de atendimento. Ou você esperava que ele tivesse telepatia?",
+        "Mande um e-mail. Se ele não responder, vá até a sala dele. Se ele não estiver lá, você pelo menos tentou.",
+        "Coordenadores são pessoas ocupadas. Verifique o horário de atendimento antes de ir lá com um problema que provavelmente você mesmo poderia resolver."
+      ],
+      "keywords": ["coordenador", "coordenação", "falar com"]
+    },
+    {
+      "pergunta": "Onde fica a biblioteca do campus Juazeiro e qual seu horário?",
+      "resposta": [
+        "Fica no Bloco K. O horário está no site da biblioteca. Use a internet para algo útil pela primeira vez.",
+        "No Bloco K. Funciona em horário comercial. Se você não sabe o que é horário comercial, o problema já é outro.",
+        "A biblioteca fica no mesmo lugar de sempre, no Bloco K. O horário muda. Adivinha onde você pode encontrar essa informação? No site. Incrível, né?"
+      ],
+      "keywords": ["biblioteca", "juazeiro", "horário", "livros"]
+    },
+    {
+      "pergunta": "Qual o horário de funcionamento da secretaria (CCA)?",
+      "resposta": [
+        "Horário comercial. De manhã e à tarde. Não, eles não trabalham de madrugada para atender suas emergências de última hora.",
+        "O CCA funciona quando você provavelmente está em aula ou dormindo. Tente ir entre 8h e 17h e torça para ter alguém lá.",
+        "O horário está pregado na porta deles e no site da UFCA. Se eu sei, você também deveria saber."
+      ],
+      "keywords": ["secretaria", "cca", "funcionamento", "atendimento"]
+    },
+    {
+      "pergunta": "Onde posso encontrar os laboratórios de informática?",
+      "resposta": [
+        "Nos blocos de aula. Se você anda pela universidade, uma hora você acha. Ou pode simplesmente ler as placas.",
+        "Procurando um computador? Eles ficam dentro das salas chamadas 'Laboratório de Informática'. Chocante, eu sei.",
+        "Se o seu curso usa laboratórios, você já deveria saber onde eles ficam. Preste mais atenção nas aulas."
+      ],
+      "keywords": ["laboratórios", "informática", "computadores", "pc"]
+    },
+    {
+      "pergunta": "Onde fica o setor da PRAE?",
+      "resposta": [
+        "No prédio da administração. Onde mais ficaria um setor burocrático? Procure pelo lugar com mais papel.",
+        "A PRAE fica onde o dinheiro dos auxílios está. Prédio da administração. Vá e enfrente a fila.",
+        "Se você precisa de auxílio, o mínimo que se espera é que você saiba onde pedir. Fica na administração."
+      ],
+      "keywords": ["setor", "prae", "localização"]
+    },
+    {
+      "pergunta": "As quadras esportivas são abertas ao público?",
+      "resposta": [
+        "Não, não é um clube. São para os alunos e servidores. Tente se matricular se quiser jogar.",
+        "Abre o olho, são quadras de uma universidade FEDERAL. São para a comunidade ACADÊMICA. Precisa desenhar?",
+        "Não. Próxima pergunta."
+      ],
+      "keywords": ["quadras", "esportivas", "jogar", "esporte"]
+    },
+    {
+      "pergunta": "Onde fica o auditório principal?",
+      "resposta": [
+        "No lugar mais óbvio do campus. É o prédio grande que parece um teatro. Se não achar, talvez a universidade não seja pra você.",
+        "Procura no mapa do campus. Ou você também quer que eu te leve pela mão?",
+        "Fica no campus. Uma dica: é grande e tem muitas cadeiras."
+      ],
+      "keywords": ["auditório", "principal", "eventos"]
+    },
+    {
+      "pergunta": "Onde posso tirar cópias ou imprimir trabalhos (xerox)?",
+      "resposta": [
+        "Fora da universidade. A UFCA ensina a pescar, não dá o peixe (nem a cópia) de graça.",
+        "Em qualquer lugar que tenha uma placa de 'XEROX'. A universidade não é uma gráfica.",
+        "Você tem 20 e poucos anos e não sabe onde encontrar uma xerox? Isso é preocupante."
+      ],
+      "keywords": ["cópias", "imprimir", "xerox"]
+    },
+    {
+      "pergunta": "Quais outros auxílios a PRAE oferece?",
+      "resposta": [
+        "A lista está no site da PRAE. Você quer que eu leia o site inteiro pra você? Tenha um pouco de iniciativa.",
+        "Eles oferecem vários. Se você se encaixa nos critérios para um, provavelmente se encaixa para outros. O site da PRAE existe para isso.",
+        "Se você realmente precisa, já deveria ter pesquisado. A informação é pública. Vá ler."
+      ],
+      "keywords": ["outros", "auxílios", "programas"]
+    },
+    {
+      "pergunta": "Como funciona o atendimento psicológico?",
+      "resposta": [
+        "Funciona se você for lá e marcar uma consulta. Eles não adivinham que você está em crise.",
+        "É um serviço para quem precisa de ajuda, não para quem quer um ombro amigo pra fofocar. Se o caso for sério, procure a PRAE.",
+        "Você agenda, você aparece, você fala. Se você não fizer sua parte, não espere que eles resolvam sua vida."
+      ],
+      "keywords": ["atendimento", "psicológico", "psicólogo", "saúde mental"]
+    },
+    {
+      "pergunta": "Existe algum apoio para estudantes com deficiência?",
+      "resposta": [
+        "Sim, se chama inclusão e é lei. Existe um setor de acessibilidade. Use-o.",
+        "Obviamente que sim. A universidade é obrigada a ter. Se precisa, procure seus direitos.",
+        "Sim. Se você precisa desse apoio, já deveria ter sido informado sobre ele no momento da sua matrícula."
+      ],
+      "keywords": ["apoio", "deficiência", "acessibilidade", "inclusão"]
+    },
+    {
+      "pergunta": "Como faço para conseguir o auxílio-transporte?",
+      "resposta": [
+        "Lendo o edital da PRAE. Ele explica tudo. Se você não consegue ler e seguir um edital, talvez o problema não seja só o transporte.",
+        "Igual a todo mundo: se inscreve, envia uma montanha de documentos e espera. Não existe atalho.",
+        "Primeiro passo: prove que você precisa. Segundo passo: leia o edital. Terceiro passo: não me pergunte de novo."
+      ],
+      "keywords": ["conseguir", "auxílio-transporte", "passagem", "ônibus"]
+    },
+    {
+      "pergunta": "Como funciona a rede Wi-Fi (Eduroam)?",
+      "resposta": [
+        "Seu login é seu email institucional e a senha é a do SIGAA. Se nem isso você consegue fazer funcionar, talvez seja melhor usar seus dados móveis.",
+        "A senha é a mesma do SIGAA. Quantas vezes será que eu vou ter que responder isso hoje?",
+        "Funciona para quem sabe ler as instruções no site de T.I. da universidade. Tente."
+      ],
+      "keywords": ["wi-fi", "wifi", "eduroam", "internet", "conectar"]
+    },
+    {
+      "pergunta": "Existem eventos culturais ou esportivos na UFCA?",
+      "resposta": [
+        "Sim, mas você precisa sair do seu quarto para participar. Eles são divulgados nos canais da universidade, basta acompanhar.",
+        "Existem, mas pelo visto você não frequenta. Tente olhar os murais ou seguir as redes sociais da UFCA.",
+        "Claro que existem. Uma universidade não é só sala de aula. Se você não está sabendo, está vivendo no mundo da lua."
+      ],
+      "keywords": ["eventos", "culturais", "esportivos", "intercampi"]
+    },
+    {
+      "pergunta": "O que acontece se eu reprovar por falta?",
+      "resposta": [
+        "O que acontece é que você paga a disciplina de novo. Simples. A universidade agradece sua contribuição para a superlotação das turmas.",
+        "Você ganha o 'privilégio' de ver as mesmas aulas, com os mesmos professores, por mais um semestre. Parabéns.",
+        "Você é reprovado. Fim. Qual parte de 'limite de faltas' não ficou clara?"
+      ],
+      "keywords": ["reprovar", "falta", "frequência"]
+    },
+    {
+      "pergunta": "Qual a missão da UFCA?",
+      "resposta": [
+        "A missão está no site oficial. Se cada aluno me perguntar isso, eu vou precisar de um bot só pra mim.",
+        "Formar pessoas. Pelo menos é o que eles dizem. Se está funcionando com você, já é outra história.",
+        "A missão dela é te dar um diploma. A sua missão é merecê-lo."
+      ],
+      "keywords": ["missão", "valores", "objetivo"]
+    },
+    {
+      "pergunta": "Onde fica o 'achados e perdidos'?",
+      "resposta": [
+        "Fica na sua responsabilidade de não perder suas coisas. Mas tente na secretaria, talvez alguém com mais cuidado que você tenha achado.",
+        "Não existe uma central de 'irresponsáveis'. Perdeu, o azar é seu. Mas pode perguntar na portaria, vai que dá sorte.",
+        "O melhor 'achados e perdidos' é cuidar do que é seu. Tente na secretaria do seu bloco, mas sem muita esperança."
+      ],
+      "keywords": ["achados e perdidos", "perdi", "encontrados"]
     }
   ]
 }

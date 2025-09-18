@@ -1,8 +1,9 @@
+# dentro de core/chatbot.py
+
 import random
 from core.historico import Historico
 from core.aprendizado import Aprendizado
 from core.personalidade import Personalidade
-# Removido 'detectar_personalidade' e relatórios, pois não são usados diretamente na classe
 from core.estatisticas import Estatisticas
 
 class ChatBot:
@@ -15,17 +16,22 @@ class ChatBot:
         self.personalidade = Personalidade()
         self.perguntas_chaves_sessao = []
 
+    # ## <-- MÉTODO CORRIGIDO
     def encontrar_resposta_predefinida(self, pergunta):
+        """
+        Encontra uma resposta buscando pela CORRESPONDÊNCIA EXATA da pergunta.
+        Ideal para a interface de botões.
+        """
         pergunta_lower = pergunta.lower()
         for item in self.base_conhecimento[self.personalidade.atual]:
-            if "keywords" in item:
-                for kw in item["keywords"]:
-                    if kw in pergunta_lower:
-                        self.perguntas_chaves_sessao.append(item["pergunta"])
-                        # ## <-- CORREÇÃO APLICADA AQUI
-                        self.personalidade.registrar_uso_personalidade_atual()
-                        return random.choice(item["resposta"])
-        return "Desculpe, não encontrei uma resposta para esta pergunta pré-definida."
+            # ALTERAÇÃO PRINCIPAL: Compara a pergunta inteira, ignorando maiúsculas/minúsculas
+            if item["pergunta"].lower() == pergunta_lower:
+                self.perguntas_chaves_sessao.append(item["pergunta"])
+                self.personalidade.registrar_uso_personalidade_atual()
+                return random.choice(item["resposta"])
+        
+        # Fallback caso algo dê muito errado e a pergunta do botão não seja encontrada no JSON
+        return "Desculpe, ocorreu um erro e não encontrei uma resposta para esta pergunta."
 
     def processar_pergunta_customizada(self, pergunta):
         pergunta_lower = pergunta.lower()
@@ -38,7 +44,6 @@ class ChatBot:
                         item["resposta"]
                     )
                     self.perguntas_chaves_sessao.append(item["pergunta"])
-                    # ## <-- CORREÇÃO APLICADA AQUI
                     self.personalidade.registrar_uso_personalidade_atual()
                     return random.choice(respostas_da_personalidade_atual)
 
@@ -46,7 +51,6 @@ class ChatBot:
         for item in self.aprendizado.dados:
             if item["pergunta"].lower() == pergunta_lower:
                 self.perguntas_chaves_sessao.append(item["pergunta"])
-                # ## <-- CORREÇÃO APLICADA AQUI
                 self.personalidade.registrar_uso_personalidade_atual()
                 return item["resposta"]
 
