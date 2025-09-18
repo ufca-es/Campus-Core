@@ -1,0 +1,15 @@
+Usuário:  onde posso comer na UFCA?
+Chatbot: O funcionamento do Restaurante Universitário é gerido pela PRAE e requer a compra antecipada de acesso para as refeições.
+==================================================
+Usuário:  rude
+Chatbot: Personalidade alterada para Rude. Como posso ajudar?
+==================================================
+Usuário:  onde posso comer na UFCA?
+Chatbot: Se quer estudar na UFCA, vai ter que escolher entre Juazeiro do Norte, Barbalha, Crato, Brejo Santo e Icó.
+==================================================
+Usuário:  sair
+Chatbot: Obrigado! Aprendi algo novo. Na próxima vez já vou saber responder.
+==================================================
+Usuário:  rude
+Chatbot: Obrigado! Aprendi algo novo. Na próxima vez já vou saber responder.
+==================================================
