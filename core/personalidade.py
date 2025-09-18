@@ -1,3 +1,5 @@
+# dentro de core/personalidade.py
+
 import json
 import os
 
@@ -22,11 +24,18 @@ class Personalidade:
                 return json.load(arq)
         return {"Formal": 0, "Engracado": 0, "Rude": 0}
 
-    def alterar(self, nova_personalidade):
-        """Troca a personalidade atual e atualiza contadores."""
+    # ## <-- MÉTODO SIMPLIFICADO: Agora só define a personalidade
+    def definir_personalidade_atual(self, nova_personalidade):
+        """Apenas troca a personalidade atual, sem contar."""
         self.atual = nova_personalidade
-        self.contador[self.atual] += 1
-        self.contador_sessao[self.atual] += 1
+
+    # ## <-- NOVO MÉTODO: Responsável por registrar o uso
+    def registrar_uso_personalidade_atual(self):
+        """Incrementa os contadores da personalidade atualmente em uso."""
+        if self.atual in self.contador:
+            self.contador[self.atual] += 1
+            self.contador_sessao[self.atual] += 1
+            self.salvar_contador() # Salva o contador acumulado
 
     def salvar_contador(self):
         """Persiste o contador acumulado em arquivo JSON."""
@@ -34,10 +43,7 @@ class Personalidade:
             json.dump(self.contador, arq, ensure_ascii=False, indent=4)
 
 def detectar_personalidade(entrada, personalidade_atual="Formal"):
-    """
-    Detecta se o usuário solicitou troca de personalidade.
-    Retorna (personalidade_detectada, entrada_limpa)
-    """
+    # (Esta função auxiliar não precisa de alterações)
     entrada_lower = entrada.lower()
     for persona, keywords in keywords_personalidade.items():
         for kw in keywords:
