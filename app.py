@@ -37,136 +37,156 @@ def carregar_perguntas_e_categorias():
             categorias["Outros"].append(pergunta)
     return categorias
 
+def update_search_term():
+    """Atualiza o termo de busca na memória da sessão."""
+    st.session_state.search_term = st.session_state.search_input
+
 # --- Inicialização ---
 bot = carregar_bot()
 categorias = carregar_perguntas_e_categorias()
 
 if "messages" not in st.session_state:
-    # ## <-- ALTERAÇÃO: Histórico agora é salvo em uma variável separada
-    st.session_state.historical_messages = []
-    ultimas_interacoes_raw = bot.historico.ler_ultimas_interacoes(n=5)
-    if ultimas_interacoes_raw:
-        for interacao in ultimas_interacoes_raw:
-            pergunta_raw = interacao[0].replace("Usuário: ", "").strip()
-            resposta_raw = interacao[1].replace("Chatbot: ", "").strip()
-            st.session_state.historical_messages.append({"role": "user", "content": pergunta_raw})
-            st.session_state.historical_messages.append({"role": "assistant", "content": resposta_raw})
-
-    # A conversa atual começa sempre limpa
-    st.session_state.messages = [{"role": "assistant", "content": "Olá! Escolha uma personalidade e sua pergunta."}]
-    
+    st.session_state.messages = [{"role": "assistant", "content": "Olá! Escolha uma personalidade e sua pergunta.", "personality": "Formal"}]
     st.session_state.waiting_for_suggestion = False
     st.session_state.question_to_learn = ""
     st.session_state.show_toast = False
+    st.session_state.search_term = ""
     estatisticas_gerais = Estatisticas(None, None, None, bot.base_conhecimento, bot.historico.arquivo)
     st.session_state.sugestoes = estatisticas_gerais.obter_sugestoes_perguntas()
 
 
 # --- Interface Principal ---
-st.set_page_config(page_title="Campus Core", page_icon="🤖")
+st.set_page_config(page_title="Campus Core", layout="wide", page_icon="🤖")
 
 if st.session_state.get("show_toast"):
     st.toast(":green[Resposta recebida!]", icon="✅")
     st.session_state.show_toast = False
 
 st.title("🤖 Campus Core - Chatbot da UFCA")
-st.caption("Selecione uma personalidade na barra lateral, escolha um tópico e faça sua pergunta.")
 
-# ## <-- NOVA SEÇÃO: Expander para o histórico antigo
-if st.session_state.historical_messages:
-    with st.expander("Visualizar últimas 5 interações do histórico"):
-        for message in st.session_state.historical_messages:
-            with st.chat_message(message["role"]):
+col1, col2 = st.columns([1, 1])
+
+with col1:
+    st.subheader("Selecione sua Pergunta")
+    personality_color_map = {"Formal": "#007bff", "Engracado": "#28a745", "Rude": "#dc3545"}
+    current_personality = bot.personalidade.atual
+    color = personality_color_map.get(current_personality, "grey")
+    st.markdown(f"<h5 style='color: {color};'>Modo Ativo: {current_personality}</h5>", unsafe_allow_html=True)
+    
+    tab_perguntas, tab_aprendidas, tab_outra = st.tabs(["Perguntas Frequentes", "Perguntas Aprendidas", "Outra Pergunta"])
+
+    with tab_perguntas:
+        st.text_input(
+            "🔎 Buscar por palavra-chave...",
+            placeholder="Ex: biblioteca, sigaa, RU",
+            key="search_input",
+            on_change=update_search_term
+        )
+        search_term = st.session_state.get("search_term", "")
+        
+        filtered_categorias = {}
+        if search_term:
+            for categoria, perguntas in categorias.items():
+                matching_questions = [p for p in perguntas if search_term.lower() in p.lower()]
+                if matching_questions:
+                    filtered_categorias[categoria] = matching_questions
+        else:
+            filtered_categorias = categorias
+
+        if not search_term and st.session_state.sugestoes:
+            st.markdown("**💡 Sugestões (Mais Frequentes)**")
+            for pergunta_sugerida in st.session_state.sugestoes:
+                if st.button(pergunta_sugerida, key=f"sug_{pergunta_sugerida}", use_container_width=True):
+                    resposta = bot.encontrar_resposta_predefinida(pergunta_sugerida)
+                    st.session_state.show_toast = True
+                    st.session_state.messages.append({"role": "user", "content": pergunta_sugerida})
+                    st.session_state.messages.append({"role": "assistant", "content": resposta, "personality": bot.personalidade.atual})
+                    bot.historico.salvar(pergunta_sugerida, resposta)
+                    st.rerun()
+            st.divider()
+
+        if not filtered_categorias and search_term:
+             st.warning("Nenhuma pergunta encontrada para o termo buscado.")
+             
+        for categoria, perguntas in filtered_categorias.items():
+            with st.expander(f"**{categoria}**", expanded=bool(search_term)):
+                for pergunta in perguntas:
+                    if st.button(pergunta, key=f"pre_{pergunta}", use_container_width=True):
+                        resposta = bot.encontrar_resposta_predefinida(pergunta)
+                        st.session_state.show_toast = True
+                        st.session_state.messages.append({"role": "user", "content": pergunta})
+                        st.session_state.messages.append({"role": "assistant", "content": resposta, "personality": bot.personalidade.atual})
+                        bot.historico.salvar(pergunta, resposta)
+                        st.rerun()
+
+    with tab_aprendidas:
+        bot.aprendizado.dados = bot.aprendizado._carregar()
+        if not bot.aprendizado.dados:
+            st.info("O bot ainda não aprendeu nenhuma pergunta nova.")
+        for item in bot.aprendizado.dados:
+            pergunta_aprendida = item["pergunta"]
+            if st.button(pergunta_aprendida, key=f"apr_{pergunta_aprendida}", use_container_width=True):
+                resposta = bot.processar_pergunta_customizada(pergunta_aprendida)
+                st.session_state.show_toast = True
+                st.session_state.messages.append({"role": "user", "content": pergunta_aprendida})
+                st.session_state.messages.append({"role": "assistant", "content": resposta, "personality": bot.personalidade.atual})
+                bot.historico.salvar(pergunta_aprendida, resposta)
+                st.rerun()
+
+    with tab_outra:
+        st.info("Não encontrou sua dúvida? Digite-a abaixo para que o bot possa aprender.")
+        pergunta_customizada = st.text_input("Digite sua pergunta aqui:", key="custom_question_input")
+        if st.button("Enviar Pergunta", key="send_custom"):
+            if pergunta_customizada:
+                resposta = bot.processar_pergunta_customizada(pergunta_customizada)
+                st.toast("Pergunta processada!", icon="🤖")
+                st.session_state.messages.append({"role": "user", "content": pergunta_customizada})
+                if resposta is None:
+                    st.session_state.messages.append({"role": "assistant", "content": "Não sei a resposta. Pode me ajudar a aprender?", "personality": bot.personalidade.atual})
+                    st.session_state.waiting_for_suggestion = True
+                    st.session_state.question_to_learn = pergunta_customizada
+                else:
+                    st.session_state.messages.append({"role": "assistant", "content": resposta, "personality": bot.personalidade.atual})
+                    bot.historico.salvar(pergunta_customizada, resposta)
+                st.rerun()
+
+        if st.session_state.waiting_for_suggestion:
+            sugestao_resposta = st.text_input("Qual seria uma boa resposta para a pergunta acima?")
+            if st.button("Enviar Sugestão", key="send_suggestion"):
+                bot.aprendizado.salvar_novo_conhecimento(st.session_state.question_to_learn, sugestao_resposta)
+                agradecimento = "Obrigado! Aprendi algo novo com sua ajuda."
+                st.toast("Sugestão aprendida com sucesso!", icon="🧠")
+                st.session_state.messages.append({"role": "assistant", "content": agradecimento, "personality": bot.personalidade.atual})
+                bot.historico.salvar(f"(Aprendendo): {st.session_state.question_to_learn}", f"(Sugestão): {sugestao_resposta}")
+                st.session_state.waiting_for_suggestion = False
+                st.session_state.question_to_learn = ""
+                st.rerun()
+
+with col2:
+    st.subheader("Histórico da Conversa")
+    avatar_map = { "Formal": "assets/avatar_formal.png", "Engracado": "assets/avatar_engracado.png", "Rude": "assets/avatar_rude.png" }
+    with st.container(height=600, border=True):
+        for message in st.session_state.messages:
+            avatar_icon = None
+            if message["role"] == "assistant":
+                personality = message.get("personality", "Formal")
+                avatar_icon = avatar_map.get(personality, "🤖")
+            with st.chat_message(message["role"], avatar=avatar_icon):
                 st.markdown(message["content"])
-        st.info("Esta é uma visualização estática do seu histórico anterior.")
-
-
-if st.session_state.sugestoes:
-    st.subheader("💡 Sugestões (Perguntas Mais Frequentes)")
-    cols = st.columns(len(st.session_state.sugestoes))
-    for i, pergunta_sugerida in enumerate(st.session_state.sugestoes):
-        with cols[i]:
-            if st.button(pergunta_sugerida, key=f"sug_{pergunta_sugerida}", use_container_width=True):
-                resposta = bot.encontrar_resposta_predefinida(pergunta_sugerida)
-                st.session_state.show_toast = True
-                st.session_state.messages.append({"role": "user", "content": pergunta_sugerida})
-                st.session_state.messages.append({"role": "assistant", "content": resposta})
-                bot.historico.salvar(pergunta_sugerida, resposta)
-                st.rerun()
-    st.divider()
-
-st.subheader("Selecione sua Pergunta")
-
-# (O resto do arquivo permanece o mesmo)
-for categoria, perguntas in categorias.items():
-    with st.expander(f"**{categoria}**"):
-        for pergunta in perguntas:
-            if st.button(pergunta, key=f"pre_{pergunta}", use_container_width=True):
-                resposta = bot.encontrar_resposta_predefinida(pergunta)
-                st.session_state.show_toast = True
-                st.session_state.messages.append({"role": "user", "content": pergunta})
-                st.session_state.messages.append({"role": "assistant", "content": resposta})
-                bot.historico.salvar(pergunta, resposta)
-                st.rerun()
-
-with st.expander("**Perguntas Aprendidas (memória do bot)**"):
-    bot.aprendizado.dados = bot.aprendizado._carregar()
-    if not bot.aprendizado.dados:
-        st.info("O bot ainda não aprendeu nenhuma pergunta nova.")
-    for item in bot.aprendizado.dados:
-        pergunta_aprendida = item["pergunta"]
-        if st.button(pergunta_aprendida, key=f"apr_{pergunta_aprendida}", use_container_width=True):
-            resposta = bot.processar_pergunta_customizada(pergunta_aprendida)
-            st.session_state.show_toast = True
-            st.session_state.messages.append({"role": "user", "content": pergunta_aprendida})
-            st.session_state.messages.append({"role": "assistant", "content": resposta})
-            bot.historico.salvar(pergunta_aprendida, resposta)
-            st.rerun()
-
-with st.expander("**Outra Pergunta (Não encontrou sua dúvida?)**"):
-    pergunta_customizada = st.text_input("Digite sua pergunta aqui:")
-    if st.button("Enviar Pergunta", key="send_custom"):
-        if pergunta_customizada:
-            resposta = bot.processar_pergunta_customizada(pergunta_customizada)
-            st.toast("Pergunta processada!", icon="🤖")
-            st.session_state.messages.append({"role": "user", "content": pergunta_customizada})
-            if resposta is None:
-                st.session_state.messages.append({"role": "assistant", "content": "Não sei a resposta para isso. Pode me ajudar a aprender?"})
-                st.session_state.waiting_for_suggestion = True
-                st.session_state.question_to_learn = pergunta_customizada
-            else:
-                st.session_state.messages.append({"role": "assistant", "content": resposta})
-                bot.historico.salvar(pergunta_customizada, resposta)
-            st.rerun()
-
-if st.session_state.waiting_for_suggestion:
-    sugestao_resposta = st.text_input("Qual seria uma boa resposta para a pergunta acima?")
-    if st.button("Enviar Sugestão", key="send_suggestion"):
-        bot.aprendizado.salvar_novo_conhecimento(st.session_state.question_to_learn, sugestao_resposta)
-        agradecimento = "Obrigado! Aprendi algo novo com sua ajuda."
-        st.toast("Sugestão aprendida com sucesso!", icon="🧠")
-        st.session_state.messages.append({"role": "assistant", "content": agradecimento})
-        bot.historico.salvar(f"(Aprendendo): {st.session_state.question_to_learn}", f"(Sugestão): {sugestao_resposta}")
-        st.session_state.waiting_for_suggestion = False
-        st.session_state.question_to_learn = ""
-        st.rerun()
-
-st.subheader("Histórico da Conversa")
-with st.container(border=True):
-    # Este container agora mostra apenas as mensagens da sessão ATUAL
-    for message in st.session_state.messages:
-        with st.chat_message(message["role"]):
-            st.markdown(message["content"])
 
 with st.sidebar:
     st.header("Opções da Sessão")
     st.subheader("1. Escolha a Personalidade")
     personalidade_escolhida = st.radio( "Com quem você quer falar?", ["Formal", "Engracado", "Rude"], label_visibility="collapsed")
+    bot.personalidade.definir_personalidade_atual(personalidade_escolhida)
+    
+    # ## <-- ALTERAÇÃO: O comando st.rerun() foi removido daqui.
+    # O Streamlit já atualiza a página sozinho quando um widget muda de valor.
+    # Aquele comando extra estava causando o problema.
     if "personalidade_atual" not in st.session_state or st.session_state.personalidade_atual != personalidade_escolhida:
-        bot.personalidade.definir_personalidade_atual(personalidade_escolhida)
-        st.session_state.personalidade_atual = personalidade_escolhida
-        if "messages" in st.session_state and len(st.session_state.messages) > 1:
+        if "personalidade_atual" in st.session_state: 
              st.toast(f"Personalidade alterada para {personalidade_escolhida}!")
+        st.session_state.personalidade_atual = personalidade_escolhida
 
     st.divider()
     if st.button("Encerrar Sessão e Gerar Relatório"):
@@ -192,20 +212,10 @@ with st.sidebar:
     st.header("Relatórios Salvos")
     diretorio_relatorios = "relatorios"
     if os.path.exists(diretorio_relatorios) and os.listdir(diretorio_relatorios):
-        arquivos = sorted(
-            os.listdir(diretorio_relatorios),
-            key=lambda f: os.path.getmtime(os.path.join(diretorio_relatorios, f)),
-            reverse=True
-        )
+        arquivos = sorted(os.listdir(diretorio_relatorios), key=lambda f: os.path.getmtime(os.path.join(diretorio_relatorios, f)), reverse=True)
         for nome_arquivo in arquivos:
             caminho_completo = os.path.join(diretorio_relatorios, nome_arquivo)
             with open(caminho_completo, "rb") as file:
-                st.download_button(
-                    label=f"📄 {nome_arquivo}",
-                    data=file,
-                    file_name=nome_arquivo,
-                    mime="text/plain",
-                    key=f"dl_{nome_arquivo}"
-                )
+                st.download_button(label=f"📄 {nome_arquivo}", data=file, file_name=nome_arquivo, mime="text/plain", key=f"dl_{nome_arquivo}")
     else:
         st.info("Nenhum relatório foi gerado ainda.")
