@@ -97,3 +97,24 @@ Chatbot: A Universidade Federal do Cariri possui campi localizados em cinco muni
 Usuário:  O que é a UFCA?
 Chatbot: Sério? É a Universidade Federal do Cariri. O nome é bem autoexplicativo, não acha?
 ==================================================
+Usuário:  Como posso ingressar na UFCA?
+Chatbot: Para ingressar na UFCA, é necessário participar do SISU com a nota do ENEM.
+==================================================
+Usuário:  O que é a UFCA?
+Chatbot: Sério? É a Universidade Federal do Cariri. O nome é bem autoexplicativo, não acha?
+==================================================
+Usuário:  O que é a UFCA?
+Chatbot: A Universidade Federal do Cariri (UFCA) é uma instituição de ensino superior pública, federal, com sede em Juazeiro do Norte, Ceará.
+==================================================
+Usuário:  Existe algum programa de intercâmbio?
+Chatbot: Existem programas de mobilidade internacional. Os discentes interessados devem atender aos critérios dos editais publicados pela ARINTER.
+==================================================
+Usuário:  Como acessar o SIGAA?
+Chatbot: Para acessar o SIGAA, utilize o site sig.ufca.edu.br, informando seu login e senha.
+==================================================
+Usuário:  Como funciona a prova final?
+Chatbot: A famosa final. É quando a universidade te pergunta: 'você tem certeza que aprendeu alguma coisa?'. Se passar, ufa. Se não, te vejo no próximo semestre.
+==================================================
+Usuário:  Como funciona o trancamento de matrícula?
+Chatbot: Você pede pra parar o mundo que você quer descer. Acessa o SIGAA e clica em 'trancar'. Se não souber fazer nem isso...
+==================================================

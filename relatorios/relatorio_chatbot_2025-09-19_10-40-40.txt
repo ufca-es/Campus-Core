@@ -1,0 +1,20 @@
+==================================================
+ RELATÓRIO DE SESSÃO DO CHATBOT UFCA
+ Gerado em: 19/09/2025 10:40:40
+==================================================
+
+Total de interações na sessão: 4
+Pergunta mais feita: 'O que é a UFCA?' (2 vezes)
+
+Uso das personalidades nesta sessão:
+- Formal: 3 vez(es)
+- Engracado: 0 vez(es)
+- Rude: 1 vez(es)
+
+Uso acumulado (total) das personalidades:
+- Formal: 27 vez(es)
+- Engracado: 3 vez(es)
+- Rude: 7 vez(es)
+
+==================================================
+FIM DO RELATÓRIO
