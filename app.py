@@ -5,6 +5,7 @@ from datetime import datetime
 from core.chatbot import ChatBot
 from core.estatisticas import Estatisticas
 from core.relatorio import gerar_relatorio_final
+import streamlit.components.v1 as components
 
 # --- Funções de Apoio ---
 @st.cache_resource
@@ -37,23 +38,33 @@ def carregar_perguntas_e_categorias():
             categorias["Outros"].append(pergunta)
     return categorias
 
-def update_search_term():
-    """Atualiza o termo de busca na memória da sessão."""
-    st.session_state.search_term = st.session_state.search_input
-
 # --- Inicialização ---
 bot = carregar_bot()
 categorias = carregar_perguntas_e_categorias()
 
-if "messages" not in st.session_state:
+def inicializar_sessao(carregar_historico=True):
+    # ## <-- ALTERAÇÃO: Lógica para carregar o histórico antigo foi reintroduzida aqui
+    st.session_state.historical_messages = []
+    if carregar_historico:
+        ultimas_interacoes_raw = bot.historico.ler_ultimas_interacoes(n=5)
+        if ultimas_interacoes_raw:
+            for interacao in ultimas_interacoes_raw:
+                pergunta_raw = interacao[0].replace("Usuário: ", "").strip()
+                resposta_raw = interacao[1].replace("Chatbot: ", "").strip()
+                st.session_state.historical_messages.append({"role": "user", "content": pergunta_raw})
+                st.session_state.historical_messages.append({"role": "assistant", "content": resposta_raw, "personality": "Formal"})
+    
     st.session_state.messages = [{"role": "assistant", "content": "Olá! Escolha uma personalidade e sua pergunta.", "personality": "Formal"}]
     st.session_state.waiting_for_suggestion = False
     st.session_state.question_to_learn = ""
     st.session_state.show_toast = False
-    st.session_state.search_term = ""
     estatisticas_gerais = Estatisticas(None, None, None, bot.base_conhecimento, bot.historico.arquivo)
     st.session_state.sugestoes = estatisticas_gerais.obter_sugestoes_perguntas()
+    bot.perguntas_chaves_sessao.clear()
+    bot.personalidade.contador_sessao = {"Formal": 0, "Engracado": 0, "Rude": 0}
 
+if "messages" not in st.session_state:
+    inicializar_sessao()
 
 # --- Interface Principal ---
 st.set_page_config(page_title="Campus Core", layout="wide", page_icon="🤖")
@@ -61,6 +72,51 @@ st.set_page_config(page_title="Campus Core", layout="wide", page_icon="🤖")
 if st.session_state.get("show_toast"):
     st.toast(":green[Resposta recebida!]", icon="✅")
     st.session_state.show_toast = False
+
+with st.sidebar:
+    st.header("Opções da Sessão")
+    st.subheader("1. Escolha a Personalidade")
+    personalidade_escolhida = st.radio( "Com quem você quer falar?", ["Formal", "Engracado", "Rude"], label_visibility="collapsed", key="personality_selector")
+    bot.personalidade.definir_personalidade_atual(personalidade_escolhida)
+    
+    if "personalidade_atual" not in st.session_state or st.session_state.personalidade_atual != personalidade_escolhida:
+        if "personalidade_atual" in st.session_state: 
+             st.toast(f"Personalidade alterada para {personalidade_escolhida}!")
+        st.session_state.personalidade_atual = personalidade_escolhida
+        st.rerun()
+
+    st.divider()
+    if st.button("Encerrar Sessão e Gerar Relatório"):
+        estatisticas = Estatisticas(
+            perguntas_chaves_sessao=bot.perguntas_chaves_sessao,
+            contador_sessao=bot.personalidade.contador_sessao,
+            contador_acumulado=bot.personalidade.contador,
+            base_conhecimento=bot.base_conhecimento,
+            historico_path=bot.historico.arquivo
+        )
+        caminho_relatorio = gerar_relatorio_final(estatisticas)
+        if caminho_relatorio and os.path.exists(caminho_relatorio):
+            st.success(f"Relatório '{os.path.basename(caminho_relatorio)}' gerado!")
+            with open(caminho_relatorio, "rb") as file:
+                st.download_button("Baixar Novo Relatório", file, os.path.basename(caminho_relatorio), "text/plain")
+        else:
+            st.error("Falha ao gerar o relatório.")
+            
+    if st.button("Iniciar Nova Sessão"):
+        inicializar_sessao(carregar_historico=False)
+        st.rerun()
+        
+    st.divider()
+    st.header("Relatórios Salvos")
+    diretorio_relatorios = "relatorios"
+    if os.path.exists(diretorio_relatorios) and os.listdir(diretorio_relatorios):
+        arquivos = sorted(os.listdir(diretorio_relatorios), key=lambda f: os.path.getmtime(os.path.join(diretorio_relatorios, f)), reverse=True)
+        for nome_arquivo in arquivos:
+            caminho_completo = os.path.join(diretorio_relatorios, nome_arquivo)
+            with open(caminho_completo, "rb") as file:
+                st.download_button(label=f"📄 {nome_arquivo}", data=file, file_name=nome_arquivo, mime="text/plain", key=f"dl_{nome_arquivo}")
+    else:
+        st.info("Nenhum relatório foi gerado ainda.")
 
 st.title("🤖 Campus Core - Chatbot da UFCA")
 
@@ -70,24 +126,23 @@ with col1:
     st.subheader("Selecione sua Pergunta")
     personality_color_map = {"Formal": "#007bff", "Engracado": "#28a745", "Rude": "#dc3545"}
     current_personality = bot.personalidade.atual
-    color = personality_color_map.get(current_personality, "grey")
+    color = personality_color_map.get(current_personality, "grey") 
     st.markdown(f"<h5 style='color: {color};'>Modo Ativo: {current_personality}</h5>", unsafe_allow_html=True)
     
-    tab_perguntas, tab_aprendidas, tab_outra = st.tabs(["Perguntas Frequentes", "Perguntas Aprendidas", "Outra Pergunta"])
+    # ## <-- ALTERAÇÃO: Adicionada a nova aba "Último Histórico"
+    tab_perguntas, tab_aprendidas, tab_outra, tab_historico = st.tabs(["Perguntas Frequentes", "Perguntas Aprendidas", "Outra Pergunta", "Último Histórico"])
 
     with tab_perguntas:
-        st.text_input(
+        search_term = st.text_input(
             "🔎 Buscar por palavra-chave...",
-            placeholder="Ex: biblioteca, sigaa, RU",
-            key="search_input",
-            on_change=update_search_term
+            placeholder="Ex: biblioteca, sigaa, RU"
         )
-        search_term = st.session_state.get("search_term", "")
         
         filtered_categorias = {}
         if search_term:
+            search_term_lower = search_term.lower()
             for categoria, perguntas in categorias.items():
-                matching_questions = [p for p in perguntas if search_term.lower() in p.lower()]
+                matching_questions = [p for p in perguntas if search_term_lower in p.lower()]
                 if matching_questions:
                     filtered_categorias[categoria] = matching_questions
         else:
@@ -151,7 +206,7 @@ with col1:
                 st.rerun()
 
         if st.session_state.waiting_for_suggestion:
-            sugestao_resposta = st.text_input("Qual seria uma boa resposta para a pergunta acima?")
+            sugestao_resposta = st.text_input("Qual seria uma boa resposta para a pergunta acima?", key="suggestion_input")
             if st.button("Enviar Sugestão", key="send_suggestion"):
                 bot.aprendizado.salvar_novo_conhecimento(st.session_state.question_to_learn, sugestao_resposta)
                 agradecimento = "Obrigado! Aprendi algo novo com sua ajuda."
@@ -160,62 +215,29 @@ with col1:
                 bot.historico.salvar(f"(Aprendendo): {st.session_state.question_to_learn}", f"(Sugestão): {sugestao_resposta}")
                 st.session_state.waiting_for_suggestion = False
                 st.session_state.question_to_learn = ""
+                st.session_state.custom_question_input = ""
+                st.session_state.suggestion_input = ""
                 st.rerun()
+    
+    # ## <-- ALTERAÇÃO: Conteúdo da nova aba de histórico
+    with tab_historico:
+        st.info("Abaixo estão as últimas 5 interações registradas no histórico geral.")
+        if not st.session_state.get("historical_messages"):
+            st.warning("Nenhuma interação encontrada no histórico.")
+        else:
+            for message in st.session_state.historical_messages:
+                avatar_icon = "👤" if message["role"] == "user" else "🤖"
+                with st.chat_message(message["role"], avatar=avatar_icon):
+                    st.markdown(message["content"])
 
 with col2:
-    st.subheader("Histórico da Conversa")
+    st.subheader("Conversa")
     avatar_map = { "Formal": "assets/avatar_formal.png", "Engracado": "assets/avatar_engracado.png", "Rude": "assets/avatar_rude.png" }
     with st.container(height=600, border=True):
         for message in st.session_state.messages:
-            avatar_icon = None
+            avatar_icon = "👤" if message["role"] == "user" else None
             if message["role"] == "assistant":
                 personality = message.get("personality", "Formal")
                 avatar_icon = avatar_map.get(personality, "🤖")
             with st.chat_message(message["role"], avatar=avatar_icon):
                 st.markdown(message["content"])
-
-with st.sidebar:
-    st.header("Opções da Sessão")
-    st.subheader("1. Escolha a Personalidade")
-    personalidade_escolhida = st.radio( "Com quem você quer falar?", ["Formal", "Engracado", "Rude"], label_visibility="collapsed")
-    bot.personalidade.definir_personalidade_atual(personalidade_escolhida)
-    
-    # ## <-- ALTERAÇÃO: O comando st.rerun() foi removido daqui.
-    # O Streamlit já atualiza a página sozinho quando um widget muda de valor.
-    # Aquele comando extra estava causando o problema.
-    if "personalidade_atual" not in st.session_state or st.session_state.personalidade_atual != personalidade_escolhida:
-        if "personalidade_atual" in st.session_state: 
-             st.toast(f"Personalidade alterada para {personalidade_escolhida}!")
-        st.session_state.personalidade_atual = personalidade_escolhida
-
-    st.divider()
-    if st.button("Encerrar Sessão e Gerar Relatório"):
-        estatisticas = Estatisticas(
-            perguntas_chaves_sessao=bot.perguntas_chaves_sessao,
-            contador_sessao=bot.personalidade.contador_sessao,
-            contador_acumulado=bot.personalidade.contador,
-            base_conhecimento=bot.base_conhecimento,
-            historico_path=bot.historico.arquivo
-        )
-        caminho_relatorio = gerar_relatorio_final(estatisticas)
-        if caminho_relatorio and os.path.exists(caminho_relatorio):
-            st.success(f"Relatório '{os.path.basename(caminho_relatorio)}' gerado!")
-            with open(caminho_relatorio, "rb") as file:
-                st.download_button("Baixar Novo Relatório", file, os.path.basename(caminho_relatorio), "text/plain")
-        else:
-            st.error("Falha ao gerar o relatório.")
-            
-    if st.button("Iniciar Nova Sessão"):
-        st.session_state.clear()
-        st.rerun()
-    st.divider()
-    st.header("Relatórios Salvos")
-    diretorio_relatorios = "relatorios"
-    if os.path.exists(diretorio_relatorios) and os.listdir(diretorio_relatorios):
-        arquivos = sorted(os.listdir(diretorio_relatorios), key=lambda f: os.path.getmtime(os.path.join(diretorio_relatorios, f)), reverse=True)
-        for nome_arquivo in arquivos:
-            caminho_completo = os.path.join(diretorio_relatorios, nome_arquivo)
-            with open(caminho_completo, "rb") as file:
-                st.download_button(label=f"📄 {nome_arquivo}", data=file, file_name=nome_arquivo, mime="text/plain", key=f"dl_{nome_arquivo}")
-    else:
-        st.info("Nenhum relatório foi gerado ainda.")
