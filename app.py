@@ -42,11 +42,6 @@ bot = carregar_bot()
 categorias = carregar_perguntas_e_categorias()
 
 def inicializar_sessao():
-    """
-    Prepara ou reseta a sessão, limpando a conversa atual
-    mas recarregando o histórico antigo para visualização.
-    """
-    # Carrega o histórico para a aba de visualização
     st.session_state.historical_messages = []
     ultimas_interacoes_raw = bot.historico.ler_ultimas_interacoes(n=5)
     if ultimas_interacoes_raw:
@@ -55,14 +50,12 @@ def inicializar_sessao():
             resposta_raw = interacao[1].replace("Chatbot: ", "").strip()
             st.session_state.historical_messages.append({"role": "user", "content": pergunta_raw})
             st.session_state.historical_messages.append({"role": "assistant", "content": resposta_raw, "personality": "Formal"})
-
-    # Inicia a conversa atual do zero
+    
     st.session_state.messages = [{"role": "assistant", "content": "Olá! Escolha uma personalidade e sua pergunta.", "personality": "Formal"}]
-
-    # Reseta outras variáveis de sessão
     st.session_state.waiting_for_suggestion = False
     st.session_state.question_to_learn = ""
     st.session_state.show_toast = False
+    st.session_state.clear_inputs = False
     estatisticas_gerais = Estatisticas(None, None, None, bot.base_conhecimento, bot.historico.arquivo)
     st.session_state.sugestoes = estatisticas_gerais.obter_sugestoes_perguntas()
     bot.perguntas_chaves_sessao.clear()
@@ -83,9 +76,9 @@ with st.sidebar:
     st.subheader("1. Escolha a Personalidade")
     personalidade_escolhida = st.radio( "Com quem você quer falar?", ["Formal", "Engracado", "Rude"], label_visibility="collapsed", key="personality_selector")
     bot.personalidade.definir_personalidade_atual(personalidade_escolhida)
-
+    
     if "personalidade_atual" not in st.session_state or st.session_state.personalidade_atual != personalidade_escolhida:
-        if "personalidade_atual" in st.session_state:
+        if "personalidade_atual" in st.session_state: 
              st.toast(f"Personalidade alterada para {personalidade_escolhida}!")
         st.session_state.personalidade_atual = personalidade_escolhida
         st.rerun()
@@ -106,12 +99,11 @@ with st.sidebar:
                 st.download_button("Baixar Novo Relatório", file, os.path.basename(caminho_relatorio), "text/plain")
         else:
             st.error("Falha ao gerar o relatório.")
-
+            
     if st.button("Iniciar Nova Sessão"):
-        # ## <-- CORREÇÃO: Chamando a função de inicialização corretamente
         inicializar_sessao()
         st.rerun()
-
+        
     st.divider()
     st.header("Relatórios Salvos")
     diretorio_relatorios = "relatorios"
@@ -132,18 +124,18 @@ with col1:
     st.subheader("Selecione sua Pergunta")
     personality_color_map = {"Formal": "#007bff", "Engracado": "#28a745", "Rude": "#dc3545"}
     current_personality = bot.personalidade.atual
-    color = personality_color_map.get(current_personality, "grey")
+    color = personality_color_map.get(current_personality, "grey") 
     st.markdown(f"<h5 style='color: {color};'>Modo Ativo: {current_personality}</h5>", unsafe_allow_html=True)
-
+    
     tab_perguntas, tab_aprendidas, tab_outra, tab_historico = st.tabs(["Perguntas Frequentes", "Perguntas Aprendidas", "Outra Pergunta", "Último Histórico"])
 
     with tab_perguntas:
-        # ## <-- CORREÇÃO: Usando o st.text_input padrão e estável
+        # ## CORREÇÃO 1: Usando o st.text_input padrão e estável para evitar o erro .lower()
         search_term = st.text_input(
             "🔎 Buscar por palavra-chave...",
             placeholder="Ex: biblioteca, sigaa, RU"
         )
-
+        
         filtered_categorias = {}
         if search_term:
             search_term_lower = search_term.lower()
@@ -168,7 +160,7 @@ with col1:
 
         if not filtered_categorias and search_term:
              st.warning("Nenhuma pergunta encontrada para o termo buscado.")
-
+             
         for categoria, perguntas in filtered_categorias.items():
             with st.expander(f"**{categoria}**", expanded=bool(search_term)):
                 for pergunta in perguntas:
@@ -195,6 +187,12 @@ with col1:
                 st.rerun()
 
     with tab_outra:
+        # ## CORREÇÃO 2: Lógica da flag para limpar os campos após o envio da sugestão
+        if st.session_state.get("clear_inputs", False):
+            st.session_state.custom_question_input = ""
+            st.session_state.suggestion_input = ""
+            st.session_state.clear_inputs = False
+
         st.info("Não encontrou sua dúvida? Digite-a abaixo para que o bot possa aprender.")
         pergunta_customizada = st.text_input("Digite sua pergunta aqui:", key="custom_question_input")
         if st.button("Enviar Pergunta", key="send_custom"):
@@ -221,8 +219,7 @@ with col1:
                 bot.historico.salvar(f"(Aprendendo): {st.session_state.question_to_learn}", f"(Sugestão): {sugestao_resposta}")
                 st.session_state.waiting_for_suggestion = False
                 st.session_state.question_to_learn = ""
-                st.session_state.custom_question_input = ""
-                st.session_state.suggestion_input = ""
+                st.session_state.clear_inputs = True # Apenas "levanta a bandeira" para limpar
                 st.rerun()
     
     with tab_historico:
