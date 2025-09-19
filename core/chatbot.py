@@ -1,4 +1,4 @@
-# dentro de core/chatbot.py
+"""Módulo principal que define a classe ChatBot e gerencia interações com o usuário."""
 
 import random
 from core.historico import Historico
@@ -7,35 +7,55 @@ from core.personalidade import Personalidade
 from core.estatisticas import Estatisticas
 
 class ChatBot:
-    """Classe principal do ChatBot UFCA."""
+    """Classe principal do ChatBot UFCA, responsável por processar perguntas e gerenciar estado."""
 
     def __init__(self, base_conhecimento):
+        """
+        Inicializa o ChatBot.
+
+        Args:
+            base_conhecimento (dict): Base de conhecimento contendo perguntas e respostas.
+        """
         self.base_conhecimento = base_conhecimento
         self.historico = Historico()
         self.aprendizado = Aprendizado()
         self.personalidade = Personalidade()
         self.perguntas_chaves_sessao = []
 
-    # ## <-- MÉTODO CORRIGIDO
     def encontrar_resposta_predefinida(self, pergunta):
         """
-        Encontra uma resposta buscando pela CORRESPONDÊNCIA EXATA da pergunta.
+        Encontra uma resposta buscando pela correspondência exata da pergunta.
+
         Ideal para a interface de botões.
+
+        Args:
+            pergunta (str): Pergunta do usuário.
+
+        Returns:
+            str: Resposta correspondente ou mensagem de erro.
         """
         pergunta_lower = pergunta.lower()
         for item in self.base_conhecimento[self.personalidade.atual]:
-            # ALTERAÇÃO PRINCIPAL: Compara a pergunta inteira, ignorando maiúsculas/minúsculas
             if item["pergunta"].lower() == pergunta_lower:
                 self.perguntas_chaves_sessao.append(item["pergunta"])
                 self.personalidade.registrar_uso_personalidade_atual()
                 return random.choice(item["resposta"])
-        
-        # Fallback caso algo dê muito errado e a pergunta do botão não seja encontrada no JSON
         return "Desculpe, ocorreu um erro e não encontrei uma resposta para esta pergunta."
 
     def processar_pergunta_customizada(self, pergunta):
+        """
+        Processa perguntas digitadas pelo usuário, verificando em:
+        1. Base principal.
+        2. Conhecimento aprendido.
+        3. Fluxo de aprendizado (caso não encontre).
+
+        Args:
+            pergunta (str): Pergunta digitada pelo usuário.
+
+        Returns:
+            str | None: Resposta encontrada ou None se precisa aprender.
+        """
         pergunta_lower = pergunta.lower()
-        # 1. Busca exata na base principal
         for personalidade_data in self.base_conhecimento.values():
             for item in personalidade_data:
                 if item["pergunta"].lower() == pergunta_lower:
@@ -47,17 +67,15 @@ class ChatBot:
                     self.personalidade.registrar_uso_personalidade_atual()
                     return random.choice(respostas_da_personalidade_atual)
 
-        # 2. Busca exata no aprendizado
         for item in self.aprendizado.dados:
             if item["pergunta"].lower() == pergunta_lower:
                 self.perguntas_chaves_sessao.append(item["pergunta"])
                 self.personalidade.registrar_uso_personalidade_atual()
                 return item["resposta"]
 
-        # 3. Fluxo de aprendizado
         self.perguntas_chaves_sessao.append("(Pergunta para Aprendizado)")
         return None
 
     def iniciar(self):
-        # (Este método permanece como está para a versão terminal)
-        pass # A lógica completa está nos arquivos que você já tem
+        """Método placeholder para execução em terminal (não implementado na versão web)."""
+        pass

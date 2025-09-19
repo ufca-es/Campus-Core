@@ -1,5 +1,3 @@
-"""Script principal para execução do chatbot em modo terminal."""
-
 import json
 from core.chatbot import ChatBot
 

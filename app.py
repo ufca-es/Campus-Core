@@ -1,3 +1,5 @@
+"""Módulo responsável por gerenciar o histórico de conversas do chatbot."""
+
 import streamlit as st
 import json
 import os

@@ -1,11 +1,22 @@
+"""Módulo responsável por gerar relatórios de uso do chatbot."""
+
 import os
 from datetime import datetime
 from .estatisticas import Estatisticas
 
 def gerar_relatorio_final(dados_estatisticos: Estatisticas, diretorio="relatorios"):
     """
-    Gera um arquivo de texto com o relatório final da sessão do chatbot.
-    O nome do arquivo incluirá a data e hora para ser único.
+    Gera um relatório de texto contendo estatísticas da sessão atual.
+
+    O arquivo é salvo no diretório especificado e possui nome único
+    com base na data e hora de geração.
+
+    Args:
+        dados_estatisticos (Estatisticas): Objeto com dados da sessão.
+        diretorio (str): Caminho do diretório onde salvar o relatório.
+
+    Returns:
+        str | None: Caminho do arquivo gerado ou None em caso de erro.
     """
     try:
         os.makedirs(diretorio, exist_ok=True)
@@ -16,7 +27,6 @@ def gerar_relatorio_final(dados_estatisticos: Estatisticas, diretorio="relatorio
         print(f"Gerando relatório final em: {caminho_completo}")
 
         with open(caminho_completo, "w", encoding="utf-8") as f:
-            # (O conteúdo de escrita do arquivo permanece o mesmo)
             f.write("=" * 50 + "\n")
             f.write(" RELATÓRIO DE SESSÃO DO CHATBOT UFCA\n")
             f.write(f" Gerado em: {datetime.now().strftime('%d/%m/%Y %H:%M:%S')}\n")
@@ -28,7 +38,6 @@ def gerar_relatorio_final(dados_estatisticos: Estatisticas, diretorio="relatorio
             if dados_estatisticos.perguntas_chaves_sessao:
                 from collections import Counter
                 contador = Counter(dados_estatisticos.perguntas_chaves_sessao)
-                # Adicionado um if para evitar erro se o contador estiver vazio
                 if contador:
                     pergunta_mais_frequente, vezes = contador.most_common(1)[0]
                     f.write(f"Pergunta mais feita: '{pergunta_mais_frequente}' ({vezes} vezes)\n\n")
@@ -37,9 +46,7 @@ def gerar_relatorio_final(dados_estatisticos: Estatisticas, diretorio="relatorio
             for persona, qtd in dados_estatisticos.contador_sessao.items():
                 f.write(f"- {persona}: {qtd} vez(es)\n")
             
-            f.write("\n")
-
-            f.write("Uso acumulado (total) das personalidades:\n")
+            f.write("\nUso acumulado (total) das personalidades:\n")
             for persona, qtd in dados_estatisticos.contador_acumulado.items():
                 f.write(f"- {persona}: {qtd} vez(es)\n")
             
@@ -47,10 +54,8 @@ def gerar_relatorio_final(dados_estatisticos: Estatisticas, diretorio="relatorio
             f.write("FIM DO RELATÓRIO\n")
             
         print("Relatório gerado com sucesso!")
-        # CORREÇÃO APLICADA AQUI: Retorna o caminho do arquivo em caso de sucesso
         return caminho_completo
 
     except Exception as e:
         print(f"ERRO: Não foi possível gerar o relatório. Causa: {e}")
-        # CORREÇÃO APLICADA AQUI: Retorna None em caso de erro
         return None
