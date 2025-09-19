@@ -118,3 +118,30 @@ Chatbot: A famosa final. É quando a universidade te pergunta: 'você tem certez
 Usuário:  Como funciona o trancamento de matrícula?
 Chatbot: Você pede pra parar o mundo que você quer descer. Acessa o SIGAA e clica em 'trancar'. Se não souber fazer nem isso...
 ==================================================
+Usuário:  Existe algum programa de intercâmbio?
+Chatbot: Com certeza! É sua chance de estudar fora e tirar foto bonita pra postar. A ARINTER cuida disso, só não esquece de estudar outra língua, né?
+==================================================
+Usuário:  O que é a UFCA?
+Chatbot: A UFCA é uma universidade federal multicampi, com foco no ensino, pesquisa e extensão para o desenvolvimento social, cultural e econômico da região do Cariri.
+==================================================
+Usuário:  Existe algum programa de intercâmbio?
+Chatbot: Existem programas de mobilidade internacional. Os discentes interessados devem atender aos critérios dos editais publicados pela ARINTER.
+==================================================
+Usuário:  Quais cidades possuem campi da UFCA?
+Chatbot: Os campi da UFCA estão localizados nas cidades de Juazeiro do Norte, Barbalha, Crato, Brejo Santo e Icó.
+==================================================
+Usuário:  Como posso ingressar na UFCA?
+Chatbot: Para ingressar na UFCA, é necessário participar do SISU com a nota do ENEM.
+==================================================
+Usuário:  Qual o sistema de notas da UFCA?
+Chatbot: A avaliação de desempenho é expressa em notas de 0 a 10. Para ser aprovado, o discente deve obter nota mínima de 7,0 e cumprir com 75% da carga horária.
+==================================================
+Usuário:  Quais cidades possuem campi da UFCA?
+Chatbot: A Universidade Federal do Cariri possui campi localizados em cinco municípios: Juazeiro do Norte, Barbalha, Crato, Brejo Santo e Icó.
+==================================================
+Usuário:  O que é a UFCA?
+Chatbot: A UFCA é uma universidade federal multicampi, com foco no ensino, pesquisa e extensão para o desenvolvimento social, cultural e econômico da região do Cariri.
+==================================================
+Usuário:  Existe algum programa de intercâmbio?
+Chatbot: A ARINTER é o setor responsável por divulgar e gerenciar os editais de intercâmbio. Recomenda-se acompanhar o site oficial para oportunidades.
+==================================================

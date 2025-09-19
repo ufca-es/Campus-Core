@@ -5,7 +5,6 @@ from datetime import datetime
 from core.chatbot import ChatBot
 from core.estatisticas import Estatisticas
 from core.relatorio import gerar_relatorio_final
-import streamlit.components.v1 as components
 
 # --- Funções de Apoio ---
 @st.cache_resource
@@ -42,19 +41,25 @@ def carregar_perguntas_e_categorias():
 bot = carregar_bot()
 categorias = carregar_perguntas_e_categorias()
 
-def inicializar_sessao(carregar_historico=True):
-    # ## <-- ALTERAÇÃO: Lógica para carregar o histórico antigo foi reintroduzida aqui
+def inicializar_sessao():
+    """
+    Prepara ou reseta a sessão, limpando a conversa atual
+    mas recarregando o histórico antigo para visualização.
+    """
+    # Carrega o histórico para a aba de visualização
     st.session_state.historical_messages = []
-    if carregar_historico:
-        ultimas_interacoes_raw = bot.historico.ler_ultimas_interacoes(n=5)
-        if ultimas_interacoes_raw:
-            for interacao in ultimas_interacoes_raw:
-                pergunta_raw = interacao[0].replace("Usuário: ", "").strip()
-                resposta_raw = interacao[1].replace("Chatbot: ", "").strip()
-                st.session_state.historical_messages.append({"role": "user", "content": pergunta_raw})
-                st.session_state.historical_messages.append({"role": "assistant", "content": resposta_raw, "personality": "Formal"})
-    
+    ultimas_interacoes_raw = bot.historico.ler_ultimas_interacoes(n=5)
+    if ultimas_interacoes_raw:
+        for interacao in ultimas_interacoes_raw:
+            pergunta_raw = interacao[0].replace("Usuário: ", "").strip()
+            resposta_raw = interacao[1].replace("Chatbot: ", "").strip()
+            st.session_state.historical_messages.append({"role": "user", "content": pergunta_raw})
+            st.session_state.historical_messages.append({"role": "assistant", "content": resposta_raw, "personality": "Formal"})
+
+    # Inicia a conversa atual do zero
     st.session_state.messages = [{"role": "assistant", "content": "Olá! Escolha uma personalidade e sua pergunta.", "personality": "Formal"}]
+
+    # Reseta outras variáveis de sessão
     st.session_state.waiting_for_suggestion = False
     st.session_state.question_to_learn = ""
     st.session_state.show_toast = False
@@ -78,9 +83,9 @@ with st.sidebar:
     st.subheader("1. Escolha a Personalidade")
     personalidade_escolhida = st.radio( "Com quem você quer falar?", ["Formal", "Engracado", "Rude"], label_visibility="collapsed", key="personality_selector")
     bot.personalidade.definir_personalidade_atual(personalidade_escolhida)
-    
+
     if "personalidade_atual" not in st.session_state or st.session_state.personalidade_atual != personalidade_escolhida:
-        if "personalidade_atual" in st.session_state: 
+        if "personalidade_atual" in st.session_state:
              st.toast(f"Personalidade alterada para {personalidade_escolhida}!")
         st.session_state.personalidade_atual = personalidade_escolhida
         st.rerun()
@@ -101,11 +106,12 @@ with st.sidebar:
                 st.download_button("Baixar Novo Relatório", file, os.path.basename(caminho_relatorio), "text/plain")
         else:
             st.error("Falha ao gerar o relatório.")
-            
+
     if st.button("Iniciar Nova Sessão"):
-        inicializar_sessao(carregar_historico=False)
+        # ## <-- CORREÇÃO: Chamando a função de inicialização corretamente
+        inicializar_sessao()
         st.rerun()
-        
+
     st.divider()
     st.header("Relatórios Salvos")
     diretorio_relatorios = "relatorios"
@@ -126,18 +132,18 @@ with col1:
     st.subheader("Selecione sua Pergunta")
     personality_color_map = {"Formal": "#007bff", "Engracado": "#28a745", "Rude": "#dc3545"}
     current_personality = bot.personalidade.atual
-    color = personality_color_map.get(current_personality, "grey") 
+    color = personality_color_map.get(current_personality, "grey")
     st.markdown(f"<h5 style='color: {color};'>Modo Ativo: {current_personality}</h5>", unsafe_allow_html=True)
-    
-    # ## <-- ALTERAÇÃO: Adicionada a nova aba "Último Histórico"
+
     tab_perguntas, tab_aprendidas, tab_outra, tab_historico = st.tabs(["Perguntas Frequentes", "Perguntas Aprendidas", "Outra Pergunta", "Último Histórico"])
 
     with tab_perguntas:
+        # ## <-- CORREÇÃO: Usando o st.text_input padrão e estável
         search_term = st.text_input(
             "🔎 Buscar por palavra-chave...",
             placeholder="Ex: biblioteca, sigaa, RU"
         )
-        
+
         filtered_categorias = {}
         if search_term:
             search_term_lower = search_term.lower()
@@ -162,7 +168,7 @@ with col1:
 
         if not filtered_categorias and search_term:
              st.warning("Nenhuma pergunta encontrada para o termo buscado.")
-             
+
         for categoria, perguntas in filtered_categorias.items():
             with st.expander(f"**{categoria}**", expanded=bool(search_term)):
                 for pergunta in perguntas:
@@ -219,14 +225,14 @@ with col1:
                 st.session_state.suggestion_input = ""
                 st.rerun()
     
-    # ## <-- ALTERAÇÃO: Conteúdo da nova aba de histórico
     with tab_historico:
         st.info("Abaixo estão as últimas 5 interações registradas no histórico geral.")
         if not st.session_state.get("historical_messages"):
             st.warning("Nenhuma interação encontrada no histórico.")
         else:
+            avatar_map = { "Formal": "assets/avatar_formal.png", "Engracado": "assets/avatar_engracado.png", "Rude": "assets/avatar_rude.png" }
             for message in st.session_state.historical_messages:
-                avatar_icon = "👤" if message["role"] == "user" else "🤖"
+                avatar_icon = "👤" if message["role"] == "user" else avatar_map.get(message.get("personality", "Formal"), "🤖")
                 with st.chat_message(message["role"], avatar=avatar_icon):
                     st.markdown(message["content"])
 
