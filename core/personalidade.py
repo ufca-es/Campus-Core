@@ -1,13 +1,6 @@
-# dentro de core/personalidade.py
-
+# core/personalidade.py (VERSÃO CORRIGIDA E UNIFICADA)
 import json
 import os
-
-keywords_personalidade = {
-    "Engracado": ["engracado", "divertido", "brincalhão", "engracada", "engraçada", "engraçado","brincalhao"],
-    "Formal": ["formalidade","formal", "sério", "profissional"],
-    "Rude": ["rude", "grosso", "sarcástico","sarcastico"]
-}
 
 class Personalidade:
     """Controla a personalidade do chatbot e estatísticas de uso."""
@@ -24,30 +17,36 @@ class Personalidade:
                 return json.load(arq)
         return {"Formal": 0, "Engracado": 0, "Rude": 0}
 
-    # ## <-- MÉTODO SIMPLIFICADO: Agora só define a personalidade
-    def definir_personalidade_atual(self, nova_personalidade):
-        """Apenas troca a personalidade atual, sem contar."""
-        self.atual = nova_personalidade
+    def definir_personalidade(self, nova_personalidade, verbose=False):
+        """
+        Método unificado e corrigido para trocar de personalidade.
+        - Valida se a personalidade existe.
+        - Evita trocar para a mesma personalidade.
+        - Se 'verbose' for True, imprime mensagens (para o terminal).
+        """
+        # 1. Valida se a personalidade solicitada é válida
+        if nova_personalidade not in self.contador:
+            if verbose:
+                print(f"\nERRO: Personalidade '{nova_personalidade}' é inválida.")
+            return
 
-    # ## <-- NOVO MÉTODO: Responsável por registrar o uso
+        # 2. Verifica se já não é a personalidade atual
+        if self.atual == nova_personalidade:
+            if verbose:
+                print(f"\nA personalidade já é {self.atual}.")
+            return
+
+        # 3. Se for válida e diferente, realiza a troca
+        self.atual = nova_personalidade
+        if verbose:
+            print(f"\nPersonalidade alterada para {self.atual}.")
+
     def registrar_uso_personalidade_atual(self):
-        """Incrementa os contadores da personalidade atualmente em uso."""
-        if self.atual in self.contador:
-            self.contador[self.atual] += 1
-            self.contador_sessao[self.atual] += 1
-            self.salvar_contador() # Salva o contador acumulado
+        """Incrementa os contadores da personalidade em uso."""
+        self.contador[self.atual] = self.contador.get(self.atual, 0) + 1
+        self.contador_sessao[self.atual] = self.contador_sessao.get(self.atual, 0) + 1
 
     def salvar_contador(self):
         """Persiste o contador acumulado em arquivo JSON."""
         with open(self.arquivo, "w", encoding="utf-8") as arq:
             json.dump(self.contador, arq, ensure_ascii=False, indent=4)
-
-def detectar_personalidade(entrada, personalidade_atual="Formal"):
-    # (Esta função auxiliar não precisa de alterações)
-    entrada_lower = entrada.lower()
-    for persona, keywords in keywords_personalidade.items():
-        for kw in keywords:
-            if kw in entrada_lower:
-                entrada = entrada_lower.replace(kw, "").strip()
-                return persona, entrada
-    return personalidade_atual, entrada

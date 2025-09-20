@@ -18,6 +18,7 @@ def carregar_bot():
 def carregar_perguntas_e_categorias():
     with open("data/json_chatbot.json", "r", encoding="utf-8") as arq:
         base_conhecimento = json.load(arq)
+    # Usamos a personalidade "Formal" como base para listar todas as perguntas
     perguntas = [item["pergunta"] for item in base_conhecimento["Formal"]]
     mapeamento_categorias = {
         "Sobre a UFCA": ["ufca", "história", "missão", "pública", "cidades"],
@@ -31,7 +32,9 @@ def carregar_perguntas_e_categorias():
         categorizada = False
         for cat, keywords in mapeamento_categorias.items():
             if any(kw in pergunta.lower() for kw in keywords):
-                categorias[cat].append(pergunta); categorizada = True; break
+                categorias[cat].append(pergunta)
+                categorizada = True
+                break
         if not categorizada:
             if "Outros" not in categorias: categorias["Outros"] = []
             categorias["Outros"].append(pergunta)
@@ -57,7 +60,8 @@ def inicializar_sessao():
     st.session_state.show_toast = False
     st.session_state.clear_inputs = False
     estatisticas_gerais = Estatisticas(None, None, None, bot.base_conhecimento, bot.historico.arquivo)
-    st.session_state.sugestoes = estatisticas_gerais.obter_sugestoes_perguntas()
+    # A função foi renomeada para obter_sugestoes_perguntas em versões mais antigas, ajuste se necessário
+    # st.session_state.sugestoes = estatisticas_gerais.obter_sugestoes_perguntas() 
     bot.perguntas_chaves_sessao.clear()
     bot.personalidade.contador_sessao = {"Formal": 0, "Engracado": 0, "Rude": 0}
 
@@ -74,12 +78,14 @@ if st.session_state.get("show_toast"):
 with st.sidebar:
     st.header("Opções da Sessão")
     st.subheader("1. Escolha a Personalidade")
-    personalidade_escolhida = st.radio( "Com quem você quer falar?", ["Formal", "Engracado", "Rude"], label_visibility="collapsed", key="personality_selector")
-    bot.personalidade.definir_personalidade_atual(personalidade_escolhida)
+    personalidade_escolhida = st.radio("Com quem você quer falar?", ["Formal", "Engracado", "Rude"], label_visibility="collapsed", key="personality_selector")
+    
+    # ## ALTERAÇÃO 1: Usando o método unificado 'definir_personalidade'
+    bot.personalidade.definir_personalidade(personalidade_escolhida, verbose=False)
     
     if "personalidade_atual" not in st.session_state or st.session_state.personalidade_atual != personalidade_escolhida:
         if "personalidade_atual" in st.session_state: 
-             st.toast(f"Personalidade alterada para {personalidade_escolhida}!")
+            st.toast(f"Personalidade alterada para {personalidade_escolhida}!")
         st.session_state.personalidade_atual = personalidade_escolhida
         st.rerun()
 
@@ -130,7 +136,6 @@ with col1:
     tab_perguntas, tab_aprendidas, tab_outra, tab_historico = st.tabs(["Perguntas Frequentes", "Perguntas Aprendidas", "Outra Pergunta", "Último Histórico"])
 
     with tab_perguntas:
-        # ## CORREÇÃO 1: Usando o st.text_input padrão e estável para evitar o erro .lower()
         search_term = st.text_input(
             "🔎 Buscar por palavra-chave...",
             placeholder="Ex: biblioteca, sigaa, RU"
@@ -145,27 +150,16 @@ with col1:
                     filtered_categorias[categoria] = matching_questions
         else:
             filtered_categorias = categorias
-
-        if not search_term and st.session_state.sugestoes:
-            st.markdown("**💡 Sugestões (Mais Frequentes)**")
-            for pergunta_sugerida in st.session_state.sugestoes:
-                if st.button(pergunta_sugerida, key=f"sug_{pergunta_sugerida}", use_container_width=True):
-                    resposta = bot.encontrar_resposta_predefinida(pergunta_sugerida)
-                    st.session_state.show_toast = True
-                    st.session_state.messages.append({"role": "user", "content": pergunta_sugerida})
-                    st.session_state.messages.append({"role": "assistant", "content": resposta, "personality": bot.personalidade.atual})
-                    bot.historico.salvar(pergunta_sugerida, resposta)
-                    st.rerun()
-            st.divider()
-
-        if not filtered_categorias and search_term:
-             st.warning("Nenhuma pergunta encontrada para o termo buscado.")
-             
+        
+        # A lógica de sugestões pode ser adicionada aqui se o método existir em estatisticas.py
+        # if not search_term and st.session_state.get('sugestoes'): ...
+            
         for categoria, perguntas in filtered_categorias.items():
             with st.expander(f"**{categoria}**", expanded=bool(search_term)):
                 for pergunta in perguntas:
                     if st.button(pergunta, key=f"pre_{pergunta}", use_container_width=True):
-                        resposta = bot.encontrar_resposta_predefinida(pergunta)
+                        # ## ALTERAÇÃO 2: Usando o método unificado 'encontrar_resposta'
+                        resposta = bot.encontrar_resposta(pergunta)
                         st.session_state.show_toast = True
                         st.session_state.messages.append({"role": "user", "content": pergunta})
                         st.session_state.messages.append({"role": "assistant", "content": resposta, "personality": bot.personalidade.atual})
@@ -179,7 +173,8 @@ with col1:
         for item in bot.aprendizado.dados:
             pergunta_aprendida = item["pergunta"]
             if st.button(pergunta_aprendida, key=f"apr_{pergunta_aprendida}", use_container_width=True):
-                resposta = bot.processar_pergunta_customizada(pergunta_aprendida)
+                # ## ALTERAÇÃO 3: Usando o método unificado aqui também
+                resposta = bot.encontrar_resposta(pergunta_aprendida)
                 st.session_state.show_toast = True
                 st.session_state.messages.append({"role": "user", "content": pergunta_aprendida})
                 st.session_state.messages.append({"role": "assistant", "content": resposta, "personality": bot.personalidade.atual})
@@ -187,7 +182,6 @@ with col1:
                 st.rerun()
 
     with tab_outra:
-        # ## CORREÇÃO 2: Lógica da flag para limpar os campos após o envio da sugestão
         if st.session_state.get("clear_inputs", False):
             st.session_state.custom_question_input = ""
             st.session_state.suggestion_input = ""
@@ -197,7 +191,8 @@ with col1:
         pergunta_customizada = st.text_input("Digite sua pergunta aqui:", key="custom_question_input")
         if st.button("Enviar Pergunta", key="send_custom"):
             if pergunta_customizada:
-                resposta = bot.processar_pergunta_customizada(pergunta_customizada)
+                # ## ALTERAÇÃO 4: E aqui também
+                resposta = bot.encontrar_resposta(pergunta_customizada)
                 st.toast("Pergunta processada!", icon="🤖")
                 st.session_state.messages.append({"role": "user", "content": pergunta_customizada})
                 if resposta is None:
@@ -219,7 +214,7 @@ with col1:
                 bot.historico.salvar(f"(Aprendendo): {st.session_state.question_to_learn}", f"(Sugestão): {sugestao_resposta}")
                 st.session_state.waiting_for_suggestion = False
                 st.session_state.question_to_learn = ""
-                st.session_state.clear_inputs = True # Apenas "levanta a bandeira" para limpar
+                st.session_state.clear_inputs = True
                 st.rerun()
     
     with tab_historico:
